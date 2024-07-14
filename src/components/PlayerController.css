@@ -1,0 +1,60 @@
+.controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.horizontal-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.button {
+  margin: 2px;
+  padding: 0;      
+  background: none; 
+  border: none;     
+  cursor: pointer;  
+}
+
+.button img {
+  width: 35px;     
+  height: 35px;
+}
+
+.button img.small {
+  width: 65px;     
+  height: 65px;
+}
+
+.up {
+  order: 1;
+  margin-top: 8px; 
+  margin-left: 7px; 
+}
+
+.down {
+  order: 2;
+}
+
+.horizontal-buttons .left {
+  order: 1;
+}
+
+.horizontal-buttons .down {
+  order: 2;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.horizontal-buttons .right {
+  order: 3;
+}

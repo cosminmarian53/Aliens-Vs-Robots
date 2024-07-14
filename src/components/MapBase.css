@@ -1,0 +1,59 @@
+/* src/components/MapBase.css */
+.map-base-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-base-table {
+  display: inline-block;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.cell.active {
+  background-color: red; /* Red square */
+}
+
+.cell.npc {
+  background-image:url("../../public/enemy.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cell.border {
+  background-image: url("../../public/tree.png"); /* Relative path from the public folder */
+  background-size: cover;
+}
+
+.cell.border-left {
+  transform: rotate(90deg);
+}
+
+.cell.border-right {
+  transform: rotate(-90deg);
+}
+
+.cell.border-top {
+  transform: rotate(180deg);
+}
+
+.cell.border-bottom {
+  transform: rotate(0deg); /* Optional, defaults to no rotation */
+}
+/* media query for cells to fit mobile */
+@media (max-width: 600px) {
+  .cell {
+    width: 35px;
+    height: 35px;
+  }
+}
