@@ -1,0 +1,44 @@
+@import url("https://fonts.cdnfonts.com/css/arcade-classic");
+.stats-wrapper {
+  background-image: url("../../public/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  border: 2px solid white;
+  margin: 25px;
+}
+
+.stats-header {
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+  color: white;
+  text-decoration: underline;
+  animation: blink 0.3s infinite;
+}
+.stats-content {
+  display: flex;
+  flex-direction: column;
+}
+.stats-content p {
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+  color: white;
+  animation: blink 0.3s infinite;
+}
+@media (max-width: 600px) {
+  .stats-wrapper {
+    height: 150px;
+    width: 150px;
+  }
+  .stats-header {
+    font-size: 1rem;
+  }
+  .stats-content p {
+    font-size: 1rem;
+  }
+}

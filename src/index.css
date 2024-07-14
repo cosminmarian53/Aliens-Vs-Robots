@@ -40,7 +40,13 @@ body {
   color: red;
   animation: blink 0.3s infinite;
 }
-
+/* MAIN CONTENT OF APP */
+.game-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items:center; 
+}
 /* FOOTER */
 footer {
   font-family: "ArcadeClassic", sans-serif;
@@ -52,4 +58,9 @@ footer {
   color: red;
   animation: blink 0.3s infinite;
 }
-
+@media (max-width: 600px) {
+  .game-container {
+    flex-direction: column-reverse;
+  }
+  
+}

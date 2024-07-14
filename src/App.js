@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import "./index.css";
+import Stats from "./components/Stats";
 
 const App = () => {
   return (
@@ -18,7 +19,10 @@ const App = () => {
           <p className="sub-header">Move the cube using the arrow keys!</p>
         </header>
         <main>
-          <MapBase />
+          <div className="game-container">
+            <MapBase />
+            <Stats />
+          </div>
           <PlayerController />
           <NPCController />
         </main>
