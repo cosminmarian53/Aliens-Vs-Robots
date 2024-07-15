@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import "./index.css";
 import Stats from "./components/Stats";
+import Header from "./components/Header";
 
 const App = () => {
   const [isUp, setIsUp] = React.useState(false);
@@ -16,12 +17,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className="App">
-        <header>
-          <h1 className="main-header">
-            <span>ALIENS</span> vs. <span> ROBOTS </span>
-          </h1>
-          <p className="sub-header">Start the game by using the arrow keys!</p>
-        </header>
+        <Header />
         <main>
           <div className="game-container">
             <MapBase

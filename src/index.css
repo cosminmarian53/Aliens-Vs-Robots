@@ -18,14 +18,14 @@ body {
   font-size: 4rem;
   text-align: center;
   color: white;
+}
+.main-header.blink {
   animation: blink 0.3s infinite;
 }
-.main-header :first-child {
-  color: 	white;
+.main-header.blink-span {
   animation: blink-span 0.3s infinite;
 }
-.main-header :last-child {
-  color: 		rgb(18, 97, 128);
+.main-header.blink-span2 {
   animation: blink-span2 0.3s infinite;
 }
 @keyframes blink {
@@ -74,7 +74,34 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
-  align-items:center; 
+  align-items: center;
+}
+/* TEXT EFFECTS */
+.wavy {
+  position: relative;
+}
+
+.wavy span {
+  display: inline-block;
+  font-size: 5rem;
+  text-transform: uppercase;
+  animation: animate 1.6s ease-in-out infinite;
+  animation-delay: calc(0.2s * var(--i));
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0px);
+  }
+
+  20% {
+    transform: translateY(-20px);
+  }
+
+  40%,
+  100% {
+    transform: translateY(0px);
+  }
 }
 /* FOOTER */
 footer {
@@ -87,9 +114,12 @@ footer {
   color: red;
   animation: blink 0.3s infinite;
 }
+/* MEDIA QUERIES */
 @media (max-width: 600px) {
   .game-container {
     flex-direction: column-reverse;
   }
-  
+  .main-header span {
+    font-size: 3rem;
+  }
 }

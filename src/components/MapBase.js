@@ -29,7 +29,8 @@ const MapBase = ({ player, npc, isUp, isDown, isLeft, isRight }) => {
                         (isUp ? "player-up" : "") ||
                         (isDown ? "player-down" : "") ||
                         (isLeft ? "player-left" : "") ||
-                        (isRight ? "player-right" : "")
+                        (isRight ? "player-right" : "") ||
+                        "player"
                       }`
                     : ""
                 } ${npc.x === colIndex && npc.y === rowIndex ? "npc" : ""}

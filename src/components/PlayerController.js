@@ -26,19 +26,31 @@ const PlayerController = ({
     switch (direction) {
       case "ArrowUp":
         decrementY();
-        setIsUp(!isUp);
+        setIsDown(true);
+        setIsUp(false);
+        setIsLeft(false);
+        setIsRight(false);
         break;
       case "ArrowDown":
         incrementY();
-        setIsDown(!isDown);
+        setIsUp(true);
+        setIsDown(false);
+        setIsLeft(false);
+        setIsRight(false);
         break;
       case "ArrowLeft":
         decrementX();
-        setIsLeft(!isLeft);
+        setIsLeft(true);
+        setIsRight(false);
+        setIsDown(false);
+        setIsUp(false);
         break;
       case "ArrowRight":
         incrementX();
-        setIsRight(!isRight);
+        setIsRight(true);
+        setIsLeft(false);
+        setIsDown(false);
+        setIsUp(false);
         break;
       default:
         break;
@@ -67,7 +79,10 @@ const PlayerController = ({
             className="button up"
             onClick={() => {
               handleMovement("ArrowUp");
-              setIsUp(!isUp);
+              setIsDown(true);
+              setIsUp(false);
+              setIsLeft(false);
+              setIsRight(false);
             }}
           >
             <img
@@ -82,7 +97,10 @@ const PlayerController = ({
             className="button down"
             onClick={() => {
               handleMovement("ArrowDown");
-              setIsDown(!isDown);
+              setIsUp(true);
+              setIsDown(false);
+              setIsLeft(false);
+              setIsRight(false);
             }}
           >
             <img
@@ -95,7 +113,10 @@ const PlayerController = ({
             className="button right"
             onClick={() => {
               handleMovement("ArrowRight");
-              setIsRight(!isRight);
+              setIsRight(true);
+              setIsLeft(false);
+              setIsDown(false);
+              setIsUp(false);
             }}
           >
             <img
@@ -108,7 +129,10 @@ const PlayerController = ({
             className="button left"
             onClick={() => {
               handleMovement("ArrowLeft");
-              setIsLeft(!isLeft);
+              setIsLeft(true);
+              setIsRight(false);
+              setIsDown(false);
+              setIsUp(false);
             }}
           >
             <img

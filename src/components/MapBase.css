@@ -14,8 +14,8 @@
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   box-sizing: border-box;
   background-image: url("../../public/floor.jpg"); /* Relative path from the public folder */
   background-size: cover;
@@ -23,17 +23,19 @@
 }
 
 .cell.player {
-  background-image: url("../../public/GIFS/IDLE/alien front.gif"); /* Relative path from the public folder */
+  background-image: url("../../public/GIFS/IDLE/alien front.gif");
 }
 
 .cell.npc {
   background-image: url("../../public/enemy.gif");
   background-size: cover;
   background-repeat: no-repeat;
+  /* background displays black for some reason, and it should be transparent, fix it */
+  background-color: transparent;
 }
 
 .cell.border {
-  background-image: url("../../public/tree.png"); /* Relative path from the public folder */
+  background-image: url("../../public/spike\ border.png"); /* Relative path from the public folder */
   background-size: cover;
 }
 
@@ -64,19 +66,23 @@
   background-image: url("../../public/GIFS/MOVING/alien\ front\(move+blink\).gif");
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: transparent;
 }
 .cell.player-down {
   background-image: url("../../public/GIFS/MOVING/alien\ back\(move+blink\).gif");
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: transparent;
 }
 .cell.player-left {
   background-image: url("../../public/GIFS/MOVING/alien\ left\(move+blink\).gif");
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: transparent;
 }
 .cell.player-right {
   background-image: url("../../public/GIFS/MOVING/alien\ right\(move+blink\).gif");
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: transparent;
 }
