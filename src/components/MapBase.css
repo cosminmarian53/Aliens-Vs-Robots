@@ -16,16 +16,18 @@
 .cell {
   width: 40px;
   height: 40px;
-  border: 1px solid #ddd;
   box-sizing: border-box;
+  background-image: url("../../public/floor.jpg"); /* Relative path from the public folder */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.cell.active {
-  background-color: red; /* Red square */
+.cell.player {
+  background-image: url("../../public/GIFS/IDLE/alien front.gif"); /* Relative path from the public folder */
 }
 
 .cell.npc {
-  background-image:url("../../public/enemy.gif");
+  background-image: url("../../public/enemy.gif");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -56,4 +58,25 @@
     width: 35px;
     height: 35px;
   }
+}
+/* CHARACTHER MODEL */
+.cell.player-up {
+  background-image: url("../../public/GIFS/MOVING/alien\ front\(move+blink\).gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cell.player-down {
+  background-image: url("../../public/GIFS/MOVING/alien\ back\(move+blink\).gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cell.player-left {
+  background-image: url("../../public/GIFS/MOVING/alien\ left\(move+blink\).gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cell.player-right {
+  background-image: url("../../public/GIFS/MOVING/alien\ right\(move+blink\).gif");
+  background-size: cover;
+  background-repeat: no-repeat;
 }

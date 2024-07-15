@@ -30,6 +30,9 @@
   color: white;
   animation: blink 0.3s infinite;
 }
+.label {
+  margin-left: -255px;
+}
 @media (max-width: 600px) {
   .stats-wrapper {
     height: 150px;
@@ -40,5 +43,11 @@
   }
   .stats-content p {
     font-size: 1rem;
+  }
+  .label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
   }
 }

@@ -5,11 +5,13 @@ const Stats = () => {
   const strength = 50;
 
   return (
-    <div className="stats-wrapper">
-      <div className="stats-content">
-        <h2 className="stats-header">Stats</h2>
-        <p>💓HP: {hp}</p>
-        <p>⚔️Strength: {strength}</p>
+    <div className="label">
+      <div className="stats-wrapper">
+        <div className="stats-content">
+          <h2 className="stats-header">Stats</h2>
+          <p>💓HP: {hp}</p>
+          <p>⚔️Strength: {strength}</p>
+        </div>
       </div>
     </div>
   );

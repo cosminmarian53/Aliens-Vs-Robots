@@ -10,7 +10,9 @@
   align-items: center;
   margin-top: 15px;
 }
-
+.button:active {
+  transform: translateY(4px);
+}
 .horizontal-buttons {
   display: flex;
   justify-content: center;

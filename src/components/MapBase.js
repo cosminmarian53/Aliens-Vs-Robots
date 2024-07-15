@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
 
-const MapBase = ({ player, npc }) => {
+const MapBase = ({ player, npc, isUp, isDown, isLeft, isRight }) => {
   const size = 10;
   const rows = Array(size).fill(null);
   const cols = Array(size).fill(null);
@@ -24,7 +24,14 @@ const MapBase = ({ player, npc }) => {
               <div
                 key={colIndex}
                 className={`cell ${
-                  player.x === colIndex && player.y === rowIndex ? "active" : ""
+                  player.x === colIndex && player.y === rowIndex
+                    ? `${
+                        (isUp ? "player-up" : "") ||
+                        (isDown ? "player-down" : "") ||
+                        (isLeft ? "player-left" : "") ||
+                        (isRight ? "player-right" : "")
+                      }`
+                    : ""
                 } ${npc.x === colIndex && npc.y === rowIndex ? "npc" : ""}
                 ${getBorderClass(rowIndex, colIndex)}`}
               ></div>

@@ -9,21 +9,43 @@ import "./index.css";
 import Stats from "./components/Stats";
 
 const App = () => {
+  const [isUp, setIsUp] = React.useState(false);
+  const [isDown, setIsDown] = React.useState(false);
+  const [isLeft, setIsLeft] = React.useState(false);
+  const [isRight, setIsRight] = React.useState(false);
   return (
     <Provider store={store}>
       <div className="App">
         <header>
           <h1 className="main-header">
-            <span>RED</span> CUBE GAME
+            <span>ALIENS</span> vs. <span> ROBOTS </span>
           </h1>
-          <p className="sub-header">Move the cube using the arrow keys!</p>
+          <p className="sub-header">Start the game by using the arrow keys!</p>
         </header>
         <main>
           <div className="game-container">
-            <MapBase />
+            <MapBase
+              setIsDown={setIsDown}
+              isDown={isDown}
+              isUp={isUp}
+              setIsUp={setIsUp}
+              isLeft={isLeft}
+              setIsLeft={setIsLeft}
+              isRight={isRight}
+              setIsRight={setIsRight}
+            />
             <Stats />
           </div>
-          <PlayerController />
+          <PlayerController
+            setIsDown={setIsDown}
+            isDown={isDown}
+            isUp={isUp}
+            setIsUp={setIsUp}
+            isLeft={isLeft}
+            setIsLeft={setIsLeft}
+            isRight={isRight}
+            setIsRight={setIsRight}
+          />
           <NPCController />
         </main>
         <Footer />

@@ -18,8 +18,15 @@ body {
   font-size: 4rem;
   text-align: center;
   color: white;
-  color: red;
   animation: blink 0.3s infinite;
+}
+.main-header :first-child {
+  color: 	white;
+  animation: blink-span 0.3s infinite;
+}
+.main-header :last-child {
+  color: 		rgb(18, 97, 128);
+  animation: blink-span2 0.3s infinite;
 }
 @keyframes blink {
   0% {
@@ -30,6 +37,28 @@ body {
   }
   100% {
     color: red;
+  }
+}
+@keyframes blink-span2 {
+  0% {
+    color: rgb(18, 97, 128);
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    color: rgb(18, 97, 128);
+  }
+}
+@keyframes blink-span {
+  0% {
+    color: rgb(164, 198, 57);
+  }
+  50% {
+    color: white;
+  }
+  100% {
+    color: rgb(164, 198, 57);
   }
 }
 .sub-header {
