@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PlayerController from "./components/PlayerController";
 import MapBase from "./components/MapBase";
 import NPCController from "./components/NPCController";
@@ -10,10 +10,10 @@ import Stats from "./components/Stats";
 import Header from "./components/Header";
 
 const App = () => {
-  const [isUp, setIsUp] = React.useState(false);
-  const [isDown, setIsDown] = React.useState(false);
-  const [isLeft, setIsLeft] = React.useState(false);
-  const [isRight, setIsRight] = React.useState(false);
+  const [isUp, setIsUp] = useState(false);
+  const [isDown, setIsDown] = useState(false);
+  const [isLeft, setIsLeft] = useState(false);
+  const [isRight, setIsRight] = useState(false);
   return (
     <Provider store={store}>
       <div className="App">
@@ -21,14 +21,10 @@ const App = () => {
         <main>
           <div className="game-container">
             <MapBase
-              setIsDown={setIsDown}
               isDown={isDown}
               isUp={isUp}
-              setIsUp={setIsUp}
               isLeft={isLeft}
-              setIsLeft={setIsLeft}
               isRight={isRight}
-              setIsRight={setIsRight}
             />
             <Stats />
           </div>
