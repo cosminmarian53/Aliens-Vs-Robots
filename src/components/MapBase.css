@@ -20,12 +20,16 @@
   background-image: url("../../public/floor.jpg"); /* Relative path from the public folder */
   background-size: cover;
   background-repeat: no-repeat;
+   /* Adjust the duration and timing function as needed */
 }
 
 .cell.player {
   background-image: url("../../public/GIFS/IDLE/alien front.gif");
-}
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent;
 
+}
 .cell.npc {
   background-image: url("../../public/enemy.gif");
   background-size: cover;
@@ -82,6 +86,12 @@
 }
 .cell.player-right {
   background-image: url("../../public/GIFS/MOVING/alien\ right\(move+blink\).gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+.cell.player-left,
+.cell.player-right {
   background-size: cover;
   background-repeat: no-repeat;
   background-color: transparent;
