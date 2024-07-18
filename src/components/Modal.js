@@ -12,7 +12,7 @@ const Modal = ({ closeModal }) => {
           <button className="attack-modal-btn">⚔️Attack</button>
           <button className="defend-modal-btn">🛡️Defend</button>
           <button className="close-modal-btn" onClick={closeModal}>
-            ❌Close
+            🏃‍♂️Run
           </button>
         </div>
       </div>
