@@ -111,7 +111,7 @@
   justify-content: center;
   align-items: center;
 }
-.modal p{
+.modal p {
   font-family: "ArcadeClassic", sans-serif;
   font-size: 1.5rem;
 }
@@ -129,10 +129,11 @@
   cursor: pointer;
 }
 /* MODAL BUTTONS */
-.button-wrapper{
+.button-wrapper {
   display: flex;
   justify-content: space-around;
 }
+/* ATTACK BTN */
 .attack-modal-btn {
   background-color: rgb(255, 135, 135);
   color: white;
@@ -141,11 +142,17 @@
   border-radius: 5px;
   cursor: pointer;
   font-family: "ArcadeClassic", sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
 }
 .attack-modal-btn:hover {
   background-color: darkred;
   transition: 0.5s;
 }
+.attack-modal-btn:active {
+  transform: translateY(5px);
+}
+
+/* DEFEND BTN */
 .defend-modal-btn {
   background-color: green;
   color: white;
@@ -154,11 +161,17 @@
   border-radius: 5px;
   cursor: pointer;
   font-family: "ArcadeClassic", sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
 }
 .defend-modal-btn:hover {
   background-color: darkgreen;
   transition: 0.5s;
 }
+.defend-modal-btn:active {
+  transform: translateY(5px);
+}
+
+/* CLOSE BTN */
 .close-modal-btn {
   background-color: black;
   color: white;
@@ -167,9 +180,12 @@
   border-radius: 5px;
   cursor: pointer;
   font-family: "ArcadeClassic", sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
 }
 .close-modal-btn:hover {
   background-color: rgb(66, 66, 66);
   transition: 0.5s;
-
+}
+.close-modal-btn:active {
+  transform: translateY(5px);
 }

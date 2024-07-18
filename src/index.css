@@ -125,7 +125,7 @@ footer {
 /* MEDIA QUERIES */
 @media (max-width: 600px) {
   .game-container {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
   .main-header span {
     font-size: 3rem;

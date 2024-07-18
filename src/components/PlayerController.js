@@ -7,7 +7,7 @@ import {
   DECREMENT_Y,
 } from "../actions/actionTypes";
 import "./PlayerController.css";
-
+import move from "../sounds/move.wav";
 const PlayerController = ({
   incrementX,
   decrementX,
@@ -24,8 +24,10 @@ const PlayerController = ({
   isModalOpen,
 }) => {
   const handleMovement = (direction) => {
+    const moveSound = new Audio(move);
     switch (direction) {
       case "ArrowUp":
+        moveSound.play();
         decrementY();
         setIsDown(true);
         setIsUp(false);
@@ -33,6 +35,7 @@ const PlayerController = ({
         setIsRight(false);
         break;
       case "ArrowDown":
+        moveSound.play();
         incrementY();
         setIsUp(true);
         setIsDown(false);
@@ -40,6 +43,7 @@ const PlayerController = ({
         setIsRight(false);
         break;
       case "ArrowLeft":
+        moveSound.play();
         decrementX();
         setIsLeft(true);
         setIsRight(false);
@@ -47,6 +51,7 @@ const PlayerController = ({
         setIsUp(false);
         break;
       case "ArrowRight":
+        moveSound.play();
         incrementX();
         setIsRight(true);
         setIsLeft(false);
