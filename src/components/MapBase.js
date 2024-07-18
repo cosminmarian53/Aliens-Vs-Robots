@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
+import Modal from "./Modal";
 
 const MapBase = ({
   player,
@@ -75,23 +76,7 @@ const MapBase = ({
           </div>
         ))}
       </div>
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>
-              &times;
-            </span>
-            <p>Player and NPC are on the same tile!</p>
-            <div className="button-wrapper">
-              <button className="attack-modal-btn">⚔️Attack</button>
-              <button className="defend-modal-btn">🛡️Defend</button>
-              <button className="close-modal-btn" onClick={closeModal}>
-                ❌Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </div>
   );
 };
