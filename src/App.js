@@ -6,27 +6,34 @@ import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import "./index.css";
-import Stats from "./components/Stats";
+import Stats from "./components/PlayerStats";
 import Header from "./components/Header";
-
+import PlayerStats from "./components/PlayerStats";
+import NPCStats from "./components/NPCStats";
 const App = () => {
+  // Define all states
   const [isUp, setIsUp] = useState(false);
   const [isDown, setIsDown] = useState(false);
   const [isLeft, setIsLeft] = useState(false);
   const [isRight, setIsRight] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <Provider store={store}>
       <div className="App">
         <Header />
         <main>
           <div className="game-container">
+            <PlayerStats />
             <MapBase
               isDown={isDown}
               isUp={isUp}
               isLeft={isLeft}
               isRight={isRight}
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
             />
-            <Stats />
+            <NPCStats />
           </div>
           <PlayerController
             setIsDown={setIsDown}
@@ -37,8 +44,9 @@ const App = () => {
             setIsLeft={setIsLeft}
             isRight={isRight}
             setIsRight={setIsRight}
+            isModalOpen={isModalOpen}
           />
-          <NPCController />
+          <NPCController isModalOpen={isModalOpen} />
         </main>
         <Footer />
       </div>

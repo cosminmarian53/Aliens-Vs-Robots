@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
 
-const MapBase = ({ player, npc, isUp, isDown, isLeft, isRight }) => {
+const MapBase = ({
+  player,
+  npc,
+  isUp,
+  isDown,
+  isLeft,
+  isRight,
+  isModalOpen,
+  setIsModalOpen,
+}) => {
   const size = 10;
   const rows = Array(size).fill(null);
   const cols = Array(size).fill(null);
@@ -13,6 +22,32 @@ const MapBase = ({ player, npc, isUp, isDown, isLeft, isRight }) => {
     if (colIndex === 0) return "border border-left";
     if (colIndex === size - 1) return "border border-right";
     return "";
+  };
+
+  useEffect(() => {
+    if (player.x === npc.x && player.y === npc.y) {
+      setIsModalOpen(true);
+    }
+  }, [player, npc]);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [isModalOpen]);
+
+  const closeModal = () => {
+    // Generate random coordinates for the enemy
+    const randomX = Math.floor(Math.random() * size);
+    const randomY = Math.floor(Math.random() * size);
+
+    // Update the enemy position
+    npc.x = randomX;
+    npc.y = randomY;
+
+    setIsModalOpen(false);
   };
 
   return (
@@ -40,6 +75,23 @@ const MapBase = ({ player, npc, isUp, isDown, isLeft, isRight }) => {
           </div>
         ))}
       </div>
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModal}>
+              &times;
+            </span>
+            <p>Player and NPC are on the same tile!</p>
+            <div className="button-wrapper">
+              <button className="attack-modal-btn">⚔️Attack</button>
+              <button className="defend-modal-btn">🛡️Defend</button>
+              <button className="close-modal-btn" onClick={closeModal}>
+                ❌Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

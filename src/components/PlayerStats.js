@@ -1,6 +1,6 @@
 import React from "react";
 import "./Stats.css";
-const Stats = () => {
+const PlayerStats = () => {
   const hp = 100;
   const strength = 50;
 
@@ -8,7 +8,7 @@ const Stats = () => {
     <div className="label">
       <div className="stats-wrapper">
         <div className="stats-content">
-          <h2 className="stats-header">Stats</h2>
+          <h2 className="stats-header">👽Player Stats</h2>
           <p>💓HP: {hp}</p>
           <p>⚔️Strength: {strength}</p>
         </div>
@@ -17,4 +17,4 @@ const Stats = () => {
   );
 };
 
-export default Stats;
+export default PlayerStats;

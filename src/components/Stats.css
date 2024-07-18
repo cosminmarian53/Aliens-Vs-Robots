@@ -34,9 +34,6 @@
   text-shadow: 3px 2px 0 #000, -2px 2px 0 #000, -2px -2px 0 #000,
     2px -2px 0 #000, 0px 0px 3px #000;
 }
-.label {
-  margin-left: -255px;
-}
 @media (max-width: 600px) {
   .stats-wrapper {
     height: 150px;

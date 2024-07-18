@@ -79,11 +79,11 @@ body {
 }
 /* MAIN CONTENT OF APP */
 .game-container {
-  display: flex;
-  flex-direction: row-reverse;
+  display: flex;  
   justify-content: center;
   align-items: center;
 }
+
 /* TEXT EFFECTS */
 .wavy {
   position: relative;

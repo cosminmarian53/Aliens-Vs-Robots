@@ -21,6 +21,7 @@ const PlayerController = ({
   setIsLeft,
   isRight,
   setIsRight,
+  isModalOpen,
 }) => {
   const handleMovement = (direction) => {
     switch (direction) {
@@ -60,7 +61,9 @@ const PlayerController = ({
   useEffect(() => {
     const handleKeyPress = (event) => {
       event.preventDefault();
-      handleMovement(event.key);
+      if (!isModalOpen) {
+        handleMovement(event.key);
+      }
     };
 
     window.addEventListener("keydown", handleKeyPress);
@@ -68,7 +71,7 @@ const PlayerController = ({
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [isModalOpen]);
 
   return (
     <div className="controller">
