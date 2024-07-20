@@ -6,7 +6,7 @@ const Stats = () => {
 
   return (
     <div className="enemy-stats">
-      <div className="stats-wrapper">
+      <div className="enemy-stats-wrapper">
         <div className="stats-content">
           <h2 className="stats-header">🤖Enemy Stats</h2>
           <p>🖤HP: {hp}</p>

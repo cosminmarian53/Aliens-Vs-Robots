@@ -25,7 +25,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top:15px;
+  margin-top: 15px;
 }
 .stats-content p {
   font-family: "ArcadeClassic", sans-serif;
@@ -36,6 +36,16 @@
   text-shadow: 3px 2px 0 #000, -2px 2px 0 #000, -2px -2px 0 #000,
     2px -2px 0 #000, 0px 0px 3px #000;
 }
+.enemy-stats-wrapper {
+  background-image: url("../../public/robot_monitor.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 250px;
+  width: 250px;
+  border-radius: 5px;
+  margin: 25px;
+}
 @media (max-width: 600px) {
   .stats-wrapper {
     height: 200px;
@@ -43,9 +53,9 @@
   }
   .stats-header {
     font-size: 1rem;
-    margin-top:15px;
+    margin-top: 15px;
   }
-  .stats-content{
+  .stats-content {
     font-size: 1rem;
   }
   .label {
