@@ -134,6 +134,9 @@ font-family: "ArcadeClassic", sans-serif;
   border-radius: 5px;
 
 }
+.sound-btn:active{
+  transform: translateY(3px);
+}
 /* MEDIA QUERIES */
 @media (max-width: 600px) {
   .game-container {
