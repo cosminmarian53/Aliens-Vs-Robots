@@ -122,6 +122,18 @@ footer {
   color: red;
   animation: blink 0.3s infinite;
 }
+.sound-btn{
+font-family: "ArcadeClassic", sans-serif;
+  font-size: 1.3rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  border-radius: 5px;
+
+}
 /* MEDIA QUERIES */
 @media (max-width: 600px) {
   .game-container {

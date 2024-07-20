@@ -1,33 +1,35 @@
 @import url("https://fonts.cdnfonts.com/css/arcade-classic");
 .stats-wrapper {
-  background-image: url("../../public/background.jpg");
+  background-image: url("../../public/alien_monitor\ .png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 200px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   border-radius: 5px;
-  border: 2px solid white;
   margin: 25px;
 }
 
 .stats-header {
   font-family: "ArcadeClassic", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   text-align: center;
   color: white;
-  text-decoration: underline;
   animation: blink 0.3s infinite;
   text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
     3px -3px 0 #000, 0px 0px 5px #000;
+  margin-top: 40px;
 }
 .stats-content {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  margin-top:15px;
 }
 .stats-content p {
   font-family: "ArcadeClassic", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: center;
   color: white;
   animation: blink 0.3s infinite;
@@ -36,13 +38,14 @@
 }
 @media (max-width: 600px) {
   .stats-wrapper {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
   }
   .stats-header {
     font-size: 1rem;
+    margin-top:15px;
   }
-  .stats-content p {
+  .stats-content{
     font-size: 1rem;
   }
   .label {
