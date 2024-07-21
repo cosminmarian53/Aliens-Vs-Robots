@@ -14,7 +14,6 @@ const Footer = () => {
       audio.volume = 0.3;
     } else {
       audio.pause();
-      audio.currentTime = 0;
     }
   }, [playing]);
   return (
