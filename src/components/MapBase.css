@@ -30,7 +30,7 @@
   background-color: transparent;
 }
 .cell.npc {
-  background-image: url("../../public/enemy.gif");
+  background-image: url("../../public/robot_front.gif");
   background-size: cover;
   background-repeat: no-repeat;
   /* background displays black for some reason, and it should be transparent, fix it */
