@@ -235,3 +235,14 @@
 .close-modal-btn:active {
   transform: translateY(5px);
 }
+
+/* ATTACKED ANIMATION */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+.shake {
+  animation: shake 0.5s;
+}

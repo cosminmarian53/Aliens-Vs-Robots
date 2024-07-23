@@ -17,7 +17,7 @@ const App = () => {
   const [isLeft, setIsLeft] = useState(false);
   const [isRight, setIsRight] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [playerHealth, setPlayerHealth] = useState(10); // Assuming initial health is 100
+  const [playerHealth, setPlayerHealth] = useState(100); // Assuming initial health is 100
   const [enemyHealth, setEnemyHealth] = useState(100); // Assuming initial health is 100
   const [playerStrength, setPlayerStrength] = useState(10); // Assuming initial strength is 10
   const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10

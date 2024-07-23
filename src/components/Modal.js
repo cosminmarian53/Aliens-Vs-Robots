@@ -21,17 +21,33 @@ const Modal = ({
   const [defendedInTime, setDefendedInTime] = useState(false);
   const [attackCount, setAttackCount] = useState(0);
   const [penaltyDelay, setPenaltyDelay] = useState(500);
+  const [playerDamaged, setPlayerDamaged] = useState(false);
+  const [enemyDamaged, setEnemyDamaged] = useState(false);
+
+  const applyDamageEffects = (target) => {
+    if (target === "player") {
+      setPlayerDamaged(true);
+      setTimeout(() => setPlayerDamaged(false), 500); // Duration of the animations
+    } else if (target === "enemy") {
+      setEnemyDamaged(true);
+      setTimeout(() => setEnemyDamaged(false), 500); // Duration of the animations
+    }
+  };
+
   const attack = new Audio(attackSound);
   const defend = new Audio(defendSound);
 
+  // Update the updatePlayerHealth and updateEnemyHealth functions to use applyDamageEffects
   const updatePlayerHealth = useCallback(
     (health) => {
       setPlayerHealth(Math.min(health, 100));
+      applyDamageEffects("player");
     },
     [setPlayerHealth]
   );
   const updateEnemyHealth = (health) => {
     setEnemyHealth(Math.min(health, 100));
+    applyDamageEffects("enemy");
   };
 
   useEffect(() => {
@@ -178,7 +194,11 @@ const Modal = ({
             <div className="player-status">
               <h3>Player</h3>
               <div className="player-img-wrapper">
-                <div className="player-img"></div>
+                <div
+                  className={`player-img ${
+                    playerDamaged ? "shake flashRed" : ""
+                  }`}
+                ></div>
               </div>
               <p>
                 {getHealthEmoji(playerHealth)} {playerHealth}
@@ -188,7 +208,9 @@ const Modal = ({
             <div className="enemy-status">
               <h3>Enemy</h3>
               <div className="enemy-img-wrapper">
-                <div className="enemy-img"></div>
+                <div
+                  className={`enemy-img ${enemyDamaged ? "shake" : ""}`}
+                ></div>{" "}
               </div>
               <p>
                 {getHealthEmoji(enemyHealth)} {enemyHealth}
