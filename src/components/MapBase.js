@@ -12,6 +12,12 @@ const MapBase = ({
   isRight,
   isModalOpen,
   setIsModalOpen,
+  playerHealth,
+  setPlayerHealth,
+  enemyHealth,
+  setEnemyHealth,
+  playerStrength,
+  enemyStrength,
 }) => {
   const size = 10;
   const rows = Array(size).fill(null);
@@ -76,7 +82,17 @@ const MapBase = ({
           </div>
         ))}
       </div>
-      {isModalOpen && <Modal closeModal={closeModal} />}
+      {isModalOpen && (
+        <Modal
+          playerHealth={playerHealth}
+          setPlayerHealth={setPlayerHealth}
+          enemyHealth={enemyHealth}
+          setEnemyHealth={setEnemyHealth}
+          playerStrength={playerStrength}
+          enemyStrength={enemyStrength}
+          closeModal={closeModal}
+        />
+      )}
     </div>
   );
 };

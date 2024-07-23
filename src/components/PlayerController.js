@@ -7,7 +7,8 @@ import {
   DECREMENT_Y,
 } from "../actions/actionTypes";
 import "./PlayerController.css";
-import move from "../sounds/move.wav";
+import move from "../sounds/move.mp3";
+import click from "../sounds/click-sound.mp3";
 const PlayerController = ({
   incrementX,
   decrementX,
@@ -23,6 +24,8 @@ const PlayerController = ({
   setIsRight,
   isModalOpen,
 }) => {
+  const clickSound = new Audio(click);
+
   const handleMovement = (direction) => {
     const moveSound = new Audio(move);
     switch (direction) {
@@ -91,6 +94,7 @@ const PlayerController = ({
               setIsUp(false);
               setIsLeft(false);
               setIsRight(false);
+              clickSound.play();
             }}
           >
             <img
@@ -109,6 +113,7 @@ const PlayerController = ({
               setIsDown(false);
               setIsLeft(false);
               setIsRight(false);
+              clickSound.play();
             }}
           >
             <img
@@ -125,6 +130,7 @@ const PlayerController = ({
               setIsLeft(false);
               setIsDown(false);
               setIsUp(false);
+              clickSound.play();
             }}
           >
             <img
@@ -141,6 +147,7 @@ const PlayerController = ({
               setIsRight(false);
               setIsDown(false);
               setIsUp(false);
+              clickSound.play();
             }}
           >
             <img

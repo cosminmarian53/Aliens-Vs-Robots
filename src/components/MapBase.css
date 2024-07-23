@@ -117,7 +117,7 @@
 }
 .modal-content {
   background-color: white;
-  padding: 20px;
+  padding: 50px;
   border-radius: 5px;
   position: relative;
 }
@@ -132,6 +132,51 @@
 .button-wrapper {
   display: flex;
   justify-content: space-around;
+}
+/* MODAL-WRAPPERS */
+.player-img {
+  width: 100px;
+  height: 100px;
+  background-image: url("../../public/GIFS/IDLE/alien\ front.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.player-img-wrapper {
+  background-image: url("../../public/alien_monitor\ .png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.enemy-img {
+  width: 100px;
+  height: 100px;
+  background-image: url("../../public/robot_front.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.enemy-img-wrapper {
+  background-image: url("../../public/robot_monitor.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.status-wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+}
+.player-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "ArcadeClassic", sans-serif;
+
+}
+.enemy-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "ArcadeClassic", sans-serif;
 }
 /* ATTACK BTN */
 .attack-modal-btn {

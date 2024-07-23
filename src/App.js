@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PlayerController from "./components/PlayerController";
 import MapBase from "./components/MapBase";
 import NPCController from "./components/NPCController";
@@ -16,13 +16,20 @@ const App = () => {
   const [isLeft, setIsLeft] = useState(false);
   const [isRight, setIsRight] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [playerHealth, setPlayerHealth] = useState(100); // Assuming initial health is 100
+  const [enemyHealth, setEnemyHealth] = useState(100); // Assuming initial health is 100
+  const [playerStrength, setPlayerStrength] = useState(10); // Assuming initial strength is 10
+  const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10
   return (
     <Provider store={store}>
       <div className="App">
         <Header />
         <main>
           <div className="game-container">
-            <PlayerStats />
+            <PlayerStats
+              playerHealth={playerHealth}
+              playerStrength={playerStrength}
+            />
             <MapBase
               isDown={isDown}
               isUp={isUp}
@@ -30,8 +37,14 @@ const App = () => {
               isRight={isRight}
               isModalOpen={isModalOpen}
               setIsModalOpen={setIsModalOpen}
+              enemyHealth={enemyHealth}
+              setEnemyHealth={setEnemyHealth}
+              playerHealth={playerHealth}
+              setPlayerHealth={setPlayerHealth}
+              playerStrength={playerStrength}
+              enemyStrength={enemyStrength}
             />
-            <NPCStats />
+            <NPCStats enemyHealth={enemyHealth} enemyStrength={enemyStrength} />
           </div>
           <PlayerController
             setIsDown={setIsDown}

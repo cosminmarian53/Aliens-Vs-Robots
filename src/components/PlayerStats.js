@@ -1,16 +1,13 @@
 import React from "react";
 import "./Stats.css";
-const PlayerStats = () => {
-  const hp = 100;
-  const strength = 50;
-
+const PlayerStats = ({ playerHealth, playerStrength }) => {
   return (
     <div className="label">
       <div className="stats-wrapper">
         <div className="stats-content">
           <h2 className="stats-header">👽Player Stats</h2>
-          <p>💓HP: {hp}</p>
-          <p>⚔️Strength: {strength}</p>
+          <p>💓HP: {playerHealth}</p>
+          <p>⚔️Strength: {playerStrength}</p>
         </div>
       </div>
     </div>
