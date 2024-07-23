@@ -83,13 +83,6 @@ const Modal = ({
   }, [enemyStrength, defendedInTime, updatePlayerHealth, playerHealth]);
 
   useEffect(() => {
-    if (playerHealth <= 0) {
-      alert("You were killed!");
-      window.location.reload();
-    }
-  }, [playerHealth]);
-
-  useEffect(() => {
     if (enemyHealth <= 0) {
       respawnEnemy();
       setPlayerStrength((prevStrength) => prevStrength + 1);
