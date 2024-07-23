@@ -42,7 +42,9 @@ const App = () => {
               playerHealth={playerHealth}
               setPlayerHealth={setPlayerHealth}
               playerStrength={playerStrength}
+              setPlayerStrength={setPlayerStrength}
               enemyStrength={enemyStrength}
+              setEnemyStrength={setEnemyStrength}
             />
             <NPCStats enemyHealth={enemyHealth} enemyStrength={enemyStrength} />
           </div>
@@ -59,7 +61,7 @@ const App = () => {
           />
           <NPCController isModalOpen={isModalOpen} />
         </main>
-        <Footer />
+        <Footer isModalOpen={isModalOpen} />
       </div>
     </Provider>
   );

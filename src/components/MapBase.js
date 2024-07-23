@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
 import Modal from "./Modal";
@@ -17,7 +17,9 @@ const MapBase = ({
   enemyHealth,
   setEnemyHealth,
   playerStrength,
+  setPlayerStrength,
   enemyStrength,
+  setEnemyStrength,
 }) => {
   const size = 10;
   const rows = Array(size).fill(null);
@@ -35,7 +37,7 @@ const MapBase = ({
     if (player.x === npc.x && player.y === npc.y) {
       setIsModalOpen(true);
     }
-  }, [player, npc]);
+  }, [player, npc, setIsModalOpen]);
 
   useEffect(() => {
     if (isModalOpen) {
@@ -46,17 +48,16 @@ const MapBase = ({
   }, [isModalOpen]);
 
   const closeModal = () => {
-    // Generate random coordinates for the enemy
-    const randomX = Math.floor(Math.random() * size);
-    const randomY = Math.floor(Math.random() * size);
-
-    // Update the enemy position
-    npc.x = randomX;
-    npc.y = randomY;
-
     setIsModalOpen(false);
   };
-
+  const respawnEnemy = () => {
+    const randomX = Math.floor(Math.random() * size);
+    const randomY = Math.floor(Math.random() * size);
+    npc.x = randomX;
+    npc.y = randomY;
+    setEnemyHealth(100); // Reset enemy health to 100
+    closeModal();
+  };
   return (
     <div className="map-base-container">
       <div className="map-base-table">
@@ -91,6 +92,9 @@ const MapBase = ({
           playerStrength={playerStrength}
           enemyStrength={enemyStrength}
           closeModal={closeModal}
+          respawnEnemy={respawnEnemy}
+          setPlayerStrength={setPlayerStrength}
+          setEnemyStrength={setEnemyStrength}
         />
       )}
     </div>

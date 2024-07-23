@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import attackSound from "../sounds/attack-sound.mp3";
 import defendSound from "../sounds/defend.mp3";
 
@@ -10,6 +10,9 @@ const Modal = ({
   enemyHealth,
   setPlayerHealth,
   setEnemyHealth,
+  setPlayerStrength,
+  setEnemyStrength,
+  respawnEnemy,
 }) => {
   const [isAttackTime, setIsAttackTime] = useState(false);
   const [isDefendTime, setIsDefendTime] = useState(false);
@@ -20,6 +23,16 @@ const Modal = ({
   const [penaltyDelay, setPenaltyDelay] = useState(500);
   const attack = new Audio(attackSound);
   const defend = new Audio(defendSound);
+
+  const updatePlayerHealth = useCallback(
+    (health) => {
+      setPlayerHealth(Math.min(health, 100));
+    },
+    [setPlayerHealth]
+  );
+  const updateEnemyHealth = (health) => {
+    setEnemyHealth(Math.min(health, 100));
+  };
 
   useEffect(() => {
     const startCountdown = () => {
@@ -34,9 +47,7 @@ const Modal = ({
               if (!defendedInTime) {
                 // Player didn't defend in time, apply damage
                 const damage = Math.ceil(Math.random() * enemyStrength);
-                setPlayerHealth((prevHealth) =>
-                  Math.max(prevHealth - damage, 0)
-                );
+                updatePlayerHealth(playerHealth - damage);
               }
               setIsDefendTime(false);
               document.querySelector(".modal-content").style.backgroundColor =
@@ -69,7 +80,22 @@ const Modal = ({
       clearInterval(defendInterval);
       clearInterval(attackInterval);
     };
-  }, [enemyStrength, defendedInTime]);
+  }, [enemyStrength, defendedInTime, updatePlayerHealth, playerHealth]);
+
+  useEffect(() => {
+    if (playerHealth <= 0) {
+      alert("You were killed!");
+      window.location.reload();
+    }
+  }, [playerHealth]);
+
+  useEffect(() => {
+    if (enemyHealth <= 0) {
+      respawnEnemy();
+      setPlayerStrength((prevStrength) => prevStrength + 1);
+      setEnemyStrength((prevStrength) => prevStrength + 1);
+    }
+  }, [enemyHealth, respawnEnemy, setEnemyStrength, setPlayerStrength]);
 
   const handleAction = (action) => {
     if (!canAct) return;
@@ -96,18 +122,18 @@ const Modal = ({
       if (isDefendTime && attackCount < 3) {
         setAttackCount((prevCount) => prevCount + 1);
         const damage = Math.ceil(Math.random() * playerStrength);
-        setEnemyHealth((prevHealth) => Math.max(prevHealth - damage, 0));
+        updateEnemyHealth(enemyHealth - damage);
         attack.play();
         // Increase penalty delay if player keeps spamming
         setPenaltyDelay((prevDelay) => Math.min(prevDelay + 100, 1000));
       } else if (isAttackTime) {
         const damage = Math.ceil(Math.random() * playerStrength);
-        setEnemyHealth((prevHealth) => Math.max(prevHealth - damage, 0));
+        updateEnemyHealth(enemyHealth - damage);
         attack.play();
       } else {
         // Penalize player for attacking outside the attack window
         const damage = Math.ceil(Math.random() * enemyStrength);
-        setPlayerHealth((prevHealth) => Math.max(prevHealth - damage, 0));
+        updatePlayerHealth(playerHealth - damage);
       }
     }
   };
@@ -116,15 +142,15 @@ const Modal = ({
     if (isDefendTime) {
       setDefendedInTime(true);
       // Heal player by 1 HP
-      setPlayerHealth((prevHealth) => prevHealth + 1);
+      updatePlayerHealth(playerHealth + 1);
       // Reflect 0.1% of enemy strength back to the enemy
       const reflectedDamage = Math.ceil(enemyStrength * 0.001);
-      setEnemyHealth((prevHealth) => Math.max(prevHealth - reflectedDamage, 0));
+      updateEnemyHealth(enemyHealth - reflectedDamage);
       defend.play();
     } else {
       // Penalize player for defending outside the defend window
       const damage = Math.ceil(Math.random() * enemyStrength);
-      setPlayerHealth((prevHealth) => Math.max(prevHealth - damage, 0));
+      updatePlayerHealth(playerHealth - damage);
     }
   };
 
@@ -164,6 +190,7 @@ const Modal = ({
               <p>
                 {getHealthEmoji(playerHealth)} {playerHealth}
               </p>
+              <p>🔫Strength: {playerStrength}</p>
             </div>
             <div className="enemy-status">
               <h3>Enemy</h3>
@@ -173,11 +200,12 @@ const Modal = ({
               <p>
                 {getHealthEmoji(enemyHealth)} {enemyHealth}
               </p>
+              <p>🔫Strength: {enemyStrength} </p>
             </div>
           </div>
         </div>
         <div className="timer">
-          <p>Time Remaining: {timer} seconds</p>
+          <p style={{ textAlign: "center" }}>Time Remaining: {timer} seconds</p>
         </div>
       </div>
     </div>

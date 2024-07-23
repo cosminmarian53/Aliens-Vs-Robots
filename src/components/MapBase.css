@@ -169,7 +169,7 @@
   align-items: center;
   justify-content: center;
   font-family: "ArcadeClassic", sans-serif;
-
+  border: 2px solid black;
 }
 .enemy-status {
   display: flex;
@@ -177,6 +177,7 @@
   align-items: center;
   justify-content: center;
   font-family: "ArcadeClassic", sans-serif;
+  border: 2px solid black;
 }
 /* ATTACK BTN */
 .attack-modal-btn {

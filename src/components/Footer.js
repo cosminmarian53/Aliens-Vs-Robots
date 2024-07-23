@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import theme from "../sounds/main-theme.mp3";
+import battle from "../sounds/battle_theme.mp3";
 import "../index.css";
-const Footer = () => {
-  const song = theme;
-  const [audio] = useState(new Audio(song));
+
+const Footer = ({ isModalOpen }) => {
+  const [audio, setAudio] = useState(new Audio(theme));
   const [playing, setPlaying] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState("Main Theme");
 
   const toggle = () => setPlaying(!playing);
 
@@ -15,11 +17,26 @@ const Footer = () => {
     } else {
       audio.pause();
     }
-  }, [playing]);
+  }, [playing, audio]);
+
+  useEffect(() => {
+    audio.pause();
+    const newAudio = new Audio(isModalOpen ? battle : theme);
+    newAudio.volume = 0.3;
+    setAudio(newAudio);
+    setCurrentTheme(isModalOpen ? "Battle Theme" : "Main Theme");
+    if (playing) {
+      newAudio.play();
+    }
+  }, [isModalOpen]);
+
   return (
     <footer>
       <div>
-        <p> {playing ? "🔊Now playing : Main Theme" : "🔇Music is paused"}</p>
+        <p>
+          {" "}
+          {playing ? `🔊Now playing: ${currentTheme}` : "🔇Music is paused"}
+        </p>
         <button type="submit" className="sound-btn" onClick={toggle}>
           {playing ? "Pause" : "Play"}
         </button>
