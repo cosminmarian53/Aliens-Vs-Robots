@@ -149,9 +149,8 @@ const Modal = ({
       }
     }
   };
-
   const handleParry = () => {
-    if (isDefendTime) {
+    if (isDefendTime && parseFloat(timer) < 0.5) {
       setDefendedInTime(true);
       // Heal player by 1 HP
       updatePlayerHealth(playerHealth + 1);
@@ -161,8 +160,7 @@ const Modal = ({
       defend.play();
     } else {
       // Penalize player for defending outside the defend window
-      const damage = Math.ceil(Math.random() * enemyStrength);
-      updatePlayerHealth(playerHealth - damage);
+      updatePlayerHealth(playerHealth - 1);
     }
   };
 
