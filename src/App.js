@@ -23,54 +23,56 @@ const App = () => {
   const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10
   return (
     <Provider store={store}>
-      <div className="App">
-        <Header />
-        {playerHealth > 0 ? (
-          <main>
-            <div className="game-container">
-              <PlayerStats
-                playerHealth={playerHealth}
-                playerStrength={playerStrength}
-              />
-              <MapBase
+      <>
+        <div className="App">
+          {playerHealth > 0 && <Header />}
+          {playerHealth > 0 ? (
+            <main>
+              <div className="game-container">
+                <PlayerStats
+                  playerHealth={playerHealth}
+                  playerStrength={playerStrength}
+                />
+                <MapBase
+                  isDown={isDown}
+                  isUp={isUp}
+                  isLeft={isLeft}
+                  isRight={isRight}
+                  isModalOpen={isModalOpen}
+                  setIsModalOpen={setIsModalOpen}
+                  enemyHealth={enemyHealth}
+                  setEnemyHealth={setEnemyHealth}
+                  playerHealth={playerHealth}
+                  setPlayerHealth={setPlayerHealth}
+                  playerStrength={playerStrength}
+                  setPlayerStrength={setPlayerStrength}
+                  enemyStrength={enemyStrength}
+                  setEnemyStrength={setEnemyStrength}
+                />
+                <NPCStats
+                  enemyHealth={enemyHealth}
+                  enemyStrength={enemyStrength}
+                />
+              </div>
+              <PlayerController
+                setIsDown={setIsDown}
                 isDown={isDown}
                 isUp={isUp}
+                setIsUp={setIsUp}
                 isLeft={isLeft}
+                setIsLeft={setIsLeft}
                 isRight={isRight}
+                setIsRight={setIsRight}
                 isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
-                enemyHealth={enemyHealth}
-                setEnemyHealth={setEnemyHealth}
-                playerHealth={playerHealth}
-                setPlayerHealth={setPlayerHealth}
-                playerStrength={playerStrength}
-                setPlayerStrength={setPlayerStrength}
-                enemyStrength={enemyStrength}
-                setEnemyStrength={setEnemyStrength}
               />
-              <NPCStats
-                enemyHealth={enemyHealth}
-                enemyStrength={enemyStrength}
-              />
-            </div>
-            <PlayerController
-              setIsDown={setIsDown}
-              isDown={isDown}
-              isUp={isUp}
-              setIsUp={setIsUp}
-              isLeft={isLeft}
-              setIsLeft={setIsLeft}
-              isRight={isRight}
-              setIsRight={setIsRight}
-              isModalOpen={isModalOpen}
-            />
-            <NPCController isModalOpen={isModalOpen} />
-          </main>
-        ) : (
-          <GameOver />
-        )}
-        <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
-      </div>
+              <NPCController isModalOpen={isModalOpen} />
+            </main>
+          ) : (
+            <GameOver />
+          )}
+          <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
+        </div>
+      </>
     </Provider>
   );
 };

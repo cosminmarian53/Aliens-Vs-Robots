@@ -23,6 +23,7 @@ const Modal = ({
   const [penaltyDelay, setPenaltyDelay] = useState(500);
   const [playerDamaged, setPlayerDamaged] = useState(false);
   const [enemyDamaged, setEnemyDamaged] = useState(false);
+  const [isTimerActive, setIsTimerActive] = useState(false);
 
   const applyDamageEffects = (target) => {
     if (target === "player") {
@@ -52,11 +53,13 @@ const Modal = ({
 
   useEffect(() => {
     const startCountdown = () => {
+      setIsTimerActive(true); // Activate the timer
       setTimer(3);
       const countdown = setInterval(() => {
         setTimer((prev) => {
           if (prev <= 0.1) {
             clearInterval(countdown);
+            setIsTimerActive(false); // Deactivate the timer
             document.querySelector(".modal-content").style.backgroundColor =
               "red";
             setTimeout(() => {
@@ -169,7 +172,8 @@ const Modal = ({
         <span className="close" onClick={closeModal}>
           &times;
         </span>
-        <p>🏴‍☠️WAR HAS BEEN DECLARED ON THE ROBOTS🔫!</p>
+        <p>🤖Enemy spotted! Prepare to fight❗❗</p>
+
         <div className="button-wrapper">
           <button
             onClick={() => handleAction(handleAttack)}
@@ -220,7 +224,11 @@ const Modal = ({
           </div>
         </div>
         <div className="timer">
-          <p style={{ textAlign: "center" }}>Time Remaining: {timer} seconds</p>
+          <p style={{ textAlign: "center" }}>
+            {isTimerActive
+              ? `⏲️Time Remaining: ${timer} seconds`
+              : "Wait for timer to start..."}
+          </p>
         </div>
       </div>
     </div>
