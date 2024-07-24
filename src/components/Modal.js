@@ -154,10 +154,10 @@ const Modal = ({
   const handleParry = () => {
     if (isDefendTime && parseFloat(timer) < 0.5) {
       setDefendedInTime(true);
-      // Heal player by 1 HP
-      updatePlayerHealth(playerHealth + 1);
+      // Heal player for 20% of enemy strength
+      updatePlayerHealth(playerHealth + enemyStrength * 0.2);
       // Reflect 0.1% of enemy strength back to the enemy
-      const reflectedDamage = Math.ceil(enemyStrength * 0.001);
+      const reflectedDamage = Math.ceil(enemyStrength * 0.3);
       updateEnemyHealth(enemyHealth - reflectedDamage);
       defend.play();
     } else {
@@ -172,7 +172,9 @@ const Modal = ({
         <span className="close" onClick={closeModal}>
           &times;
         </span>
-        <p>🤖Enemy spotted! Prepare to fight❗❗</p>
+        <p style={{ textAlign: "center" }}>
+          🤖Enemy spotted! Prepare to fight❗❗
+        </p>
 
         <div className="button-wrapper">
           <button
@@ -196,7 +198,7 @@ const Modal = ({
         <div className="health-status">
           <div className="status-wrapper">
             <div className="player-status">
-              <h3>Player</h3>
+              <h3>👽Player</h3>
               <div className="player-img-wrapper">
                 <div
                   className={`player-img ${
@@ -206,24 +208,24 @@ const Modal = ({
                 <div>{playerDamaged && (hit.play(), "")} </div>
               </div>
               <p>
-                {getHealthEmoji(playerHealth)} {playerHealth}
+                {getHealthEmoji(playerHealth)}Health: {playerHealth}
               </p>
-              <p>🔫Strength: {playerStrength}</p>
+              <p>💪Strength: {playerStrength}</p>
             </div>
             <div className="enemy-status">
-              <h3>Enemy</h3>
+              <h3>🤖Enemy</h3>
               <div className="enemy-img-wrapper">
                 <div
                   className={`enemy-img ${enemyDamaged ? "shake" : ""}`}
                 ></div>
               </div>
               <p>
-                {getHealthEmoji(enemyHealth)} {enemyHealth}
+                {getHealthEmoji(enemyHealth)} Health:{enemyHealth}
               </p>
 
               <div>{enemyDamaged && (hit.play(), "")} </div>
 
-              <p>🔫Strength: {enemyStrength} </p>
+              <p>💪Strength: {enemyStrength} </p>
             </div>
           </div>
         </div>

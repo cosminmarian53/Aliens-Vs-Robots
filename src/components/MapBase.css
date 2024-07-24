@@ -116,10 +116,13 @@
   font-size: 1.5rem;
 }
 .modal-content {
-  background-color: white;
-  padding: 50px;
+  background:  url("../../public/bigframe.gif");
+  padding:60px 30px;
   border-radius: 5px;
   position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .close {
@@ -140,11 +143,18 @@
   background-image: url("../../public/GIFS/IDLE/alien\ front.gif");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 .player-img-wrapper {
-  background-image: url("../../public/alien_monitor\ .png");
+  background-image: url("../../public/card_frame.png");
   background-size: cover;
   background-repeat: no-repeat;
+  width: 120px;
+  height: 120px;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .enemy-img {
   width: 100px;
@@ -152,16 +162,23 @@
   background-image: url("../../public/robot_front.gif");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 .enemy-img-wrapper {
-  background-image: url("../../public/robot_monitor.png");
+  background-image: url("../../public/card_frame.png");
   background-size: cover;
   background-repeat: no-repeat;
+  width: 120px;
+  height: 120px;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .status-wrapper {
   display: flex;
   justify-content: space-around;
-  padding: 15px;
+  padding: 25px;
 }
 .player-status {
   display: flex;
@@ -169,7 +186,27 @@
   align-items: center;
   justify-content: center;
   font-family: "ArcadeClassic", sans-serif;
-  border: 2px solid black;
+  background-image: url("../../public/player_backcard.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 30px;
+  margin-right: 15px;
+  border-right: 10px solid black;
+}
+.player-status h3 {
+  font-size: 1.5rem;
+  color: white;
+  animation: blink 0.3s infinite;
+  text-shadow: 2px 2px 2px black;
+  text-align: center;
+}
+.player-status p {
+  font-size: 1.4rem;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  text-align: center;
+  animation: blink 0.3s infinite;
 }
 .enemy-status {
   display: flex;
@@ -177,7 +214,26 @@
   align-items: center;
   justify-content: center;
   font-family: "ArcadeClassic", sans-serif;
-  border: 2px solid black;
+  background-image: url("../../public/enemy_backcard.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 30px;
+  border-left: 10px solid black;
+}
+.enemy-status h3 {
+  font-size: 1.5rem;
+  color: white;
+  animation: blink 0.3s infinite;
+  text-shadow: 2px 2px 2px black;
+  text-align: center;
+}
+.enemy-status p {
+  font-size: 1.4rem;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  text-align: center;
+  animation: blink 0.3s infinite;
 }
 /* ATTACK BTN */
 .attack-modal-btn {
@@ -238,10 +294,18 @@
 
 /* ATTACKED ANIMATION */
 @keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-8px); }
-  75% { transform: translateX(8px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 .shake {
   animation: shake 0.5s;
@@ -252,7 +316,7 @@
     /* fit the right and le5ft side to screen */
     width: 75%;
   }
-  .enemy-status{
+  .enemy-status {
     margin-left: 5px;
   }
 }
