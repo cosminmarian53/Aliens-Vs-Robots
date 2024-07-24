@@ -94,7 +94,7 @@ const Modal = ({
           "lightgreen";
         startCountdown();
       }
-    }, Math.random() * 6000 + 1000); 
+    }, Math.random() * 6000 + 1000);
 
     return () => {
       clearInterval(defendInterval);
