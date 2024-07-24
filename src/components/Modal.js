@@ -86,8 +86,7 @@ const Modal = ({
       setAttackCount(0);
       document.querySelector(".modal-content").style.backgroundColor = "orange";
       startCountdown();
-    }, Math.random() * 6000 + 4000); // 4 to 10 seconds interval
-
+    }, Math.random() * 6000 + 1000);
     const attackInterval = setInterval(() => {
       if (!defendedInTime) {
         setIsAttackTime(true);
@@ -95,7 +94,7 @@ const Modal = ({
           "lightgreen";
         startCountdown();
       }
-    }, Math.random() * 6000 + 4000); // 4 to 10 seconds interval
+    }, Math.random() * 6000 + 1000); 
 
     return () => {
       clearInterval(defendInterval);
