@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import attackSound from "../sounds/attack-sound.mp3";
 import defendSound from "../sounds/defend.mp3";
-
+import hitSound from "../sounds/hit.mp3";
 const Modal = ({
   closeModal,
   playerStrength,
@@ -37,6 +37,8 @@ const Modal = ({
 
   const attack = new Audio(attackSound);
   const defend = new Audio(defendSound);
+  const hit = new Audio(hitSound);
+  hit.volume = 0.3;
 
   // Update the updatePlayerHealth and updateEnemyHealth functions to use applyDamageEffects
   const updatePlayerHealth = useCallback(
@@ -201,6 +203,7 @@ const Modal = ({
                     playerDamaged ? "shake flashRed" : ""
                   }`}
                 ></div>
+                <div>{playerDamaged && (hit.play(), "")} </div>
               </div>
               <p>
                 {getHealthEmoji(playerHealth)} {playerHealth}
@@ -212,11 +215,14 @@ const Modal = ({
               <div className="enemy-img-wrapper">
                 <div
                   className={`enemy-img ${enemyDamaged ? "shake" : ""}`}
-                ></div>{" "}
+                ></div>
               </div>
               <p>
                 {getHealthEmoji(enemyHealth)} {enemyHealth}
               </p>
+
+              <div>{enemyDamaged && (hit.play(), "")} </div>
+
               <p>🔫Strength: {enemyStrength} </p>
             </div>
           </div>

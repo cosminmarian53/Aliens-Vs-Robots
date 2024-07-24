@@ -23,6 +23,7 @@ const Footer = ({ isModalOpen }) => {
     audio.pause();
     const newAudio = new Audio(isModalOpen ? battle : theme);
     newAudio.volume = 0.3;
+    newAudio.loop = true; // Add this line to enable audio looping
     setAudio(newAudio);
     setCurrentTheme(isModalOpen ? "Battle Theme" : "Main Theme");
     if (playing) {
