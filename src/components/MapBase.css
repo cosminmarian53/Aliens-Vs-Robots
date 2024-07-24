@@ -246,3 +246,13 @@
 .shake {
   animation: shake 0.5s;
 }
+@media screen and (max-width: 768px) {
+  .modal-content {
+    padding: 25px;
+    /* fit the right and le5ft side to screen */
+    width: 75%;
+  }
+  .enemy-status{
+    margin-left: 5px;
+  }
+}
