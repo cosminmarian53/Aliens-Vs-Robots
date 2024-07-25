@@ -6,6 +6,7 @@ import Modal from "./Modal";
 const MapBase = ({
   player,
   npc,
+  solidBlocks,
   isUp,
   isDown,
   isLeft,
@@ -37,11 +38,17 @@ const MapBase = ({
       matrix[size - 1][j] = 1;
     }
 
+    // Add solid blocks to the matrix
+    solidBlocks.forEach((block) => {
+      matrix[block.y][block.x] = 4;
+    });
+
     matrix[player.y][player.x] = 2;
     matrix[npc.y][npc.x] = 3;
 
     return matrix;
   };
+
   const matrix = createMapMatrix();
 
   const renderTable = (matrix) => {
@@ -62,6 +69,8 @@ const MapBase = ({
             }`;
           } else if (cell === 3) {
             className = "npc";
+          } else if (cell === 4) {
+            className = "solid-block";
           }
 
           return <div key={colIndex} className={`cell ${className}`}></div>;
@@ -86,15 +95,15 @@ const MapBase = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
-    const randomX = Math.floor(Math.random() * size - 1);
-    const randomY = Math.floor(Math.random() * size - 1);
+    const randomX = Math.floor(Math.random() * (size - 2)) + 1;
+    const randomY = Math.floor(Math.random() * (size - 2)) + 1;
     npc.x = randomX;
     npc.y = randomY;
   };
 
   const respawnEnemy = () => {
-    const randomX = Math.floor(Math.random() * size - 1);
-    const randomY = Math.floor(Math.random() * size - 1);
+    const randomX = Math.floor(Math.random() * (size - 2)) + 1;
+    const randomY = Math.floor(Math.random() * (size - 2)) + 1;
     npc.x = randomX;
     npc.y = randomY;
     setEnemyHealth(100); // Reset enemy health to 100
@@ -125,6 +134,7 @@ const MapBase = ({
 const mapStateToProps = (state) => ({
   player: state.player.player,
   npc: state.player.npc,
+  solidBlocks: state.player.solidBlocks,
 });
 
 export default connect(mapStateToProps)(MapBase);

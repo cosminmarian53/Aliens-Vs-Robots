@@ -8,7 +8,11 @@
 .map-base-table {
   display: inline-block;
 }
-
+.cell.solid-block {
+  background-image: url("../../public/block.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .row {
   display: flex;
 }
