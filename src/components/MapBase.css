@@ -40,7 +40,11 @@
   /* background displays black for some reason, and it should be transparent, fix it */
   background-color: transparent;
 }
-
+.cell.door{
+  background-image: url("../../public/door.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .cell.border {
   background-image: url("../../public/spike\ border.png"); /* Relative path from the public folder */
   background-size: cover;

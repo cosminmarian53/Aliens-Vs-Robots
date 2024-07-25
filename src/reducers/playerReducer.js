@@ -95,16 +95,17 @@ const playerReducer = (state = initialState, action) => {
       const newX = getRandomMove(state.npc.x);
       const newY = getRandomMove(state.npc.y);
 
-      // Check if the new position is within bounds and not a solid block
+      // Check if the new position is within bounds, not a solid block, and not the door
       const isValidMove =
         newX > 0 &&
         newX < size - 1 &&
         newY > 0 &&
         newY < size - 1 &&
-        !isSolidBlock(newX, newY, state.solidBlocks);
+        !isSolidBlock(newX, newY, state.solidBlocks) &&
+        !(newX === 8 && newY === 5); // Exclude the door position
 
       if (!isValidMove) {
-        return state; // No movement if the new position is invalid or there's a solid block
+        return state; // No movement if the new position is invalid, there's a solid block, or it's the door
       }
 
       return {

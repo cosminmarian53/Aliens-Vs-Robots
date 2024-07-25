@@ -37,7 +37,8 @@ const MapBase = ({
       matrix[0][j] = 1;
       matrix[size - 1][j] = 1;
     }
-
+    // define coordonates for the door
+    matrix[8][5] = 8;
     // Add solid blocks to the matrix
     solidBlocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
@@ -72,7 +73,7 @@ const MapBase = ({
           } else if (cell === 4) {
             className = "solid-block";
           }
-
+          cell === 8 && (className = "door");
           return <div key={colIndex} className={`cell ${className}`}></div>;
         })}
       </div>
