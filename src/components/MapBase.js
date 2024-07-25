@@ -22,15 +22,52 @@ const MapBase = ({
   setEnemyStrength,
 }) => {
   const size = 10;
-  const rows = Array(size).fill(null);
-  const cols = Array(size).fill(null);
 
-  const getBorderClass = (rowIndex, colIndex) => {
-    if (rowIndex === 0) return "border border-top";
-    if (rowIndex === size - 1) return "border border-bottom";
-    if (colIndex === 0) return "border border-left";
-    if (colIndex === size - 1) return "border border-right";
-    return "";
+  const createMapMatrix = () => {
+    const matrix = Array.from({ length: size }, () => Array(size).fill(0));
+
+    for (let i = 0; i < size; i++) {
+      // First and last column
+      matrix[i][0] = 1;
+      matrix[i][size - 1] = 1;
+    }
+    for (let j = 0; j < size; j++) {
+      // First and last row
+      matrix[0][j] = 1;
+      matrix[size - 1][j] = 1;
+    }
+
+    matrix[player.y][player.x] = 2;
+    matrix[npc.y][npc.x] = 3;
+
+    return matrix;
+  };
+  const matrix = createMapMatrix();
+
+  const renderTable = (matrix) => {
+    return matrix.map((row, rowIndex) => (
+      <div key={rowIndex} className="row">
+        {row.map((cell, colIndex) => {
+          let className = "";
+
+          if (cell === 1) {
+            className = "map-border";
+          } else if (cell === 2) {
+            className = `${
+              (isUp ? "player-up" : "") ||
+              (isDown ? "player-down" : "") ||
+              (isLeft ? "player-left" : "") ||
+              (isRight ? "player-right" : "") ||
+              "player"
+            }`;
+          } else if (cell === 3) {
+            className = "npc";
+          }
+
+          return <div key={colIndex} className={`cell ${className}`}></div>;
+        })}
+      </div>
+    ));
   };
 
   useEffect(() => {
@@ -49,40 +86,24 @@ const MapBase = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
+    const randomX = Math.floor(Math.random() * size - 1);
+    const randomY = Math.floor(Math.random() * size - 1);
+    npc.x = randomX;
+    npc.y = randomY;
   };
+
   const respawnEnemy = () => {
-    const randomX = Math.floor(Math.random() * size);
-    const randomY = Math.floor(Math.random() * size);
+    const randomX = Math.floor(Math.random() * size - 1);
+    const randomY = Math.floor(Math.random() * size - 1);
     npc.x = randomX;
     npc.y = randomY;
     setEnemyHealth(100); // Reset enemy health to 100
     closeModal();
   };
+
   return (
     <div className="map-base-container">
-      <div className="map-base-table">
-        {rows.map((_, rowIndex) => (
-          <div key={rowIndex} className="row">
-            {cols.map((_, colIndex) => (
-              <div
-                key={colIndex}
-                className={`cell ${
-                  player.x === colIndex && player.y === rowIndex
-                    ? `${
-                        (isUp ? "player-up" : "") ||
-                        (isDown ? "player-down" : "") ||
-                        (isLeft ? "player-left" : "") ||
-                        (isRight ? "player-right" : "") ||
-                        "player"
-                      }`
-                    : ""
-                } ${npc.x === colIndex && npc.y === rowIndex ? "npc" : ""}
-                ${getBorderClass(rowIndex, colIndex)}`}
-              ></div>
-            ))}
-          </div>
-        ))}
-      </div>
+      <div className="map-base-table">{renderTable(matrix)}</div>
       {isModalOpen && (
         <Modal
           playerHealth={playerHealth}

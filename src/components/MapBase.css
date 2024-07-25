@@ -254,7 +254,11 @@
 .attack-modal-btn:active {
   transform: translateY(5px);
 }
-
+.map-border{
+  background-image: url("../../public/spike\ border.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 /* DEFEND BTN */
 .defend-modal-btn {
   background-color: green;
