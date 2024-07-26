@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { MOVE_NPC } from "../actions/actionTypes";
-const NPCController = ({ moveNPC, isModalOpen, attack }) => {
+const NPCController = ({
+  moveNPC,
+  isModalOpen,
+  attack,
+  bossHealth,
+  isBoss,
+}) => {
   useEffect(() => {
     if (isModalOpen) {
       const attackInterval = setInterval(() => {
@@ -22,7 +28,9 @@ const NPCController = ({ moveNPC, isModalOpen, attack }) => {
 
   useEffect(() => {
     if (isModalOpen) return;
-
+    if (isBoss) {
+      if (bossHealth === 0) return;
+    }
     const getRandomInterval = Math.floor(Math.random() * 2000);
     const interval = setInterval(() => {
       moveNPC();

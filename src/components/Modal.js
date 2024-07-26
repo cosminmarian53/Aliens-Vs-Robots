@@ -107,7 +107,9 @@ const Modal = ({
     if (enemyHealth <= 0) {
       respawnEnemy();
       setPlayerStrength((prevStrength) => prevStrength + 1);
-      setEnemyStrength((prevStrength) => prevStrength + 1);
+      if (!isBoss) {
+        setEnemyStrength((prevStrength) => prevStrength + 1);
+      }
     }
   }, [enemyHealth, respawnEnemy, setEnemyStrength, setPlayerStrength]);
 
@@ -136,13 +138,21 @@ const Modal = ({
       if (isDefendTime && attackCount < 3) {
         setAttackCount((prevCount) => prevCount + 1);
         const damage = Math.ceil(Math.random() * playerStrength);
-        updateEnemyHealth(enemyHealth - damage);
+        if (isBoss) {
+          updateEnemyHealth(Math.max(enemyHealth - damage, 0));
+        } else {
+          updateEnemyHealth(enemyHealth - damage);
+        }
         attack.play();
         // Increase penalty delay if player keeps spamming
         setPenaltyDelay((prevDelay) => Math.min(prevDelay + 100, 1000));
       } else if (isAttackTime) {
         const damage = Math.ceil(Math.random() * playerStrength);
-        updateEnemyHealth(enemyHealth - damage);
+        if (isBoss) {
+          updateEnemyHealth(Math.max(enemyHealth - damage, 0));
+        } else {
+          updateEnemyHealth(enemyHealth - damage);
+        }
         attack.play();
       } else {
         // Penalize player for attacking outside the attack window

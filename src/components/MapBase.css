@@ -39,13 +39,23 @@
   /* background displays black for some reason, and it should be transparent, fix it */
   background-color: transparent;
 }
-.cell.door-closed {
-  background-image: url("../../public/door.png");
+.cell.tp-open-metal {
+  background-image: url("../../public/tps/floor+tp\(firstmap_open\).png");
   background-size: cover;
   background-repeat: no-repeat;
 }
-.cell.door-open {
-  background-image: url("../../public/door_open.png");
+.cell.tp-closed-metal {
+  background-image: url("../../public/tps/floor+tp\(firstmap_close\).png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cell.tp-open-mud {
+  background-image: url("../../public/tps/mud+tp\(secondmap_open\).png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cell.tp-closed-mud {
+  background-image: url("../../public/tps/mud+tp\(secondmap_close\).png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -259,6 +269,11 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+.boss-arena-wall{
+  background-image: url("../../public/wall.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 /* ATTACK BTN */
 .attack-modal-btn {

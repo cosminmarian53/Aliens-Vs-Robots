@@ -48,7 +48,7 @@ const MapBase = ({
       matrix[size - 1][j] = 1;
     }
     // define coordinates for the door
-    matrix[0][2] = 8; // Door is a solid block if not open
+    matrix[2][2] = 8; // Door is a solid block if not open
     // Add solid blocks to the matrix
     solidBlocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
@@ -81,9 +81,9 @@ const MapBase = ({
           } else if (cell === 3) {
             className = "npc";
           } else if (cell === 4) {
-            className = "solid-block";
+            className = "map-border";
           } else if (cell === 8) {
-            className = isDoorOpen ? "door-open" : "door-closed";
+            className = isDoorOpen ? "tp-open-metal" : "tp-closed-metal";
           }
           return <div key={colIndex} className={`cell ${className}`}></div>;
         })}
@@ -112,7 +112,7 @@ const MapBase = ({
   }, [enemyHealth]);
 
   useEffect(() => {
-    if (isDoorOpen && player.x === 2 && player.y === 1) {
+    if (isDoorOpen && player.x === 2 && player.y === 2) {
       setShowBossArena(true);
     }
   }, [player, isDoorOpen]);

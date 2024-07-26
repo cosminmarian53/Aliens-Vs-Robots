@@ -27,7 +27,7 @@ const BossArena = ({
   isBoss,
 }) => {
   const size = 10;
-
+  const [isDoorOpen, setIsDoorOpen] = useState(false);
   const createMapMatrix = () => {
     const matrix = Array.from({ length: size }, () => Array(size).fill(0));
 
@@ -42,7 +42,7 @@ const BossArena = ({
       matrix[size - 1][j] = 1;
     }
     // define coordinates for the door
-    matrix[9][5] = 8;
+    matrix[7][5] = 8;
     // Add solid blocks to the matrix
     solidBlocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
@@ -63,7 +63,7 @@ const BossArena = ({
           let className = "";
 
           if (cell === 1) {
-            className = "map-border";
+            className = "boss-arena-wall";
           } else if (cell === 2) {
             className = `${
               (isUp ? "player-up" : "") ||
@@ -73,11 +73,11 @@ const BossArena = ({
               "player"
             }`;
           } else if (cell === 3) {
-            className = "boss";
+            className = bossHealth === 0 ? "boss-arena-wall" : "boss";
           } else if (cell === 4) {
             className = "solid-block";
           } else if (cell === 8) {
-            className = "door-closed";
+            className = isDoorOpen ? "tp-open-mud" : "tp-closed-mud";
           }
           return (
             <div key={colIndex} className={`cell boss-tile ${className}`}></div>
@@ -86,7 +86,11 @@ const BossArena = ({
       </div>
     ));
   };
-
+  useEffect(() => {
+    if (bossHealth === 0) {
+      setIsDoorOpen(true);
+    }
+  }, [player, setIsDoorOpen]);
   useEffect(() => {
     if (player.x === npc.x && player.y === npc.y) {
       setIsModalOpen(true);
@@ -108,7 +112,15 @@ const BossArena = ({
     npc.x = randomX;
     npc.y = randomY;
   };
-
+  const defeteatBoss = () => {
+    if (bossHealth === 0) {
+      setIsModalOpen(false);
+      // remove npc from the map
+      npc.x = 0;
+      npc.y = 0;
+      alert("🎊You defeated the boss!");
+    }
+  };
   return (
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>
@@ -123,6 +135,7 @@ const BossArena = ({
           closeModal={closeModal}
           setPlayerStrength={setPlayerStrength}
           isBoss={true} // Pass the isBoss prop
+          respawnEnemy={defeteatBoss}
         />
       )}
     </div>
