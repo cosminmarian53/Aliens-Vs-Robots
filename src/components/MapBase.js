@@ -48,7 +48,7 @@ const MapBase = ({
       matrix[size - 1][j] = 1;
     }
     // define coordinates for the door
-    matrix[9][5] = 8; // Door is a solid block if not open
+    matrix[0][2] = 8; // Door is a solid block if not open
     // Add solid blocks to the matrix
     solidBlocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
@@ -112,7 +112,7 @@ const MapBase = ({
   }, [enemyHealth]);
 
   useEffect(() => {
-    if (isDoorOpen && player.x === 5 && player.y === 8) {
+    if (isDoorOpen && player.x === 2 && player.y === 1) {
       setShowBossArena(true);
     }
   }, [player, isDoorOpen]);

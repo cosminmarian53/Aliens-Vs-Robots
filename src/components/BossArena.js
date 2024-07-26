@@ -42,7 +42,7 @@ const BossArena = ({
       matrix[size - 1][j] = 1;
     }
     // define coordinates for the door
-    matrix[0][2] = 8;
+    matrix[9][5] = 8;
     // Add solid blocks to the matrix
     solidBlocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
