@@ -173,7 +173,9 @@ const Modal = ({
           &times;
         </span>
         <p style={{ textAlign: "center" }}>
-          🤖Enemy spotted! Prepare to fight❗❗
+          {isBoss
+            ? "☠️Boss Engaged❗❗❗"
+            : "🤖Enemy spotted! Prepare to fight❗❗"}
         </p>
 
         <div className="button-wrapper">
@@ -213,10 +215,12 @@ const Modal = ({
               <p>💪Strength: {playerStrength}</p>
             </div>
             <div className="enemy-status">
-              <h3>🤖Enemy</h3>
+              <h3>{isBoss ? "💀Boss" : "🤖Enemy"}</h3>
               <div className="enemy-img-wrapper">
                 <div
-                  className={`enemy-img ${enemyDamaged ? "shake" : ""}`}
+                  className={`${isBoss ? "boss-img" : "enemy-img"} ${
+                    enemyDamaged ? "shake" : ""
+                  }`}
                 ></div>
               </div>
               <p>

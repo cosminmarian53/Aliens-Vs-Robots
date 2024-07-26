@@ -252,6 +252,14 @@
   text-align: center;
   animation: blink 0.3s infinite;
 }
+.boss-img{
+  width: 100px;
+  height: 100px;
+  background-image: url("../../public/boss.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 /* ATTACK BTN */
 .attack-modal-btn {
   background-color: rgb(255, 135, 135);
