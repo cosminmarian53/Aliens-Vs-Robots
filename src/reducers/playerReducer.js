@@ -7,7 +7,7 @@ import {
 } from "../actions/actionTypes";
 
 const initialState = {
-  player: { x: 2, y: 1 },
+  player: { x: 3, y: 2 },
   npc: { x: 7, y: 8 },
   solidBlocks: [
     { x: 4, y: 6 },
@@ -102,7 +102,7 @@ const playerReducer = (state = initialState, action) => {
         newY > 0 &&
         newY < size - 1 &&
         !isSolidBlock(newX, newY, state.solidBlocks) &&
-        !(newX === 8 && newY === 5); // Exclude the door position
+        !(newX === 0 && newY === 2); // Exclude the door position
 
       if (!isValidMove) {
         return state; // No movement if the new position is invalid, there's a solid block, or it's the door
