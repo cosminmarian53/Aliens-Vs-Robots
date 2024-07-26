@@ -48,7 +48,7 @@ const MapBase = ({
       matrix[size - 1][j] = 1;
     }
     // define coordinates for the door
-    matrix[8][5] = 8; // Door is a solid block if not open
+    matrix[9][5] = 8; // Door is a solid block if not open
     // Add solid blocks to the matrix
     solidBlocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
