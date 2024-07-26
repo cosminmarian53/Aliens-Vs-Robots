@@ -21,6 +21,10 @@ const BossArena = ({
   setPlayerStrength,
   enemyStrength,
   setEnemyStrength,
+  bossHealth,
+  setBossHealth,
+  bossStrength,
+  isBoss,
 }) => {
   const size = 10;
 
@@ -69,7 +73,7 @@ const BossArena = ({
               "player"
             }`;
           } else if (cell === 3) {
-            className = "npc";
+            className = "boss";
           } else if (cell === 4) {
             className = "solid-block";
           } else if (cell === 8) {
@@ -105,15 +109,6 @@ const BossArena = ({
     npc.y = randomY;
   };
 
-  const respawnEnemy = () => {
-    const randomX = Math.floor(Math.random() * (size - 2)) + 1;
-    const randomY = Math.floor(Math.random() * (size - 2)) + 1;
-    npc.x = randomX;
-    npc.y = randomY;
-    setEnemyHealth(100); // Reset enemy health to 100
-    closeModal();
-  };
-
   return (
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>
@@ -121,14 +116,13 @@ const BossArena = ({
         <Modal
           playerHealth={playerHealth}
           setPlayerHealth={setPlayerHealth}
-          enemyHealth={enemyHealth}
-          setEnemyHealth={setEnemyHealth}
+          enemyHealth={bossHealth}
+          setEnemyHealth={setBossHealth}
           playerStrength={playerStrength}
-          enemyStrength={enemyStrength}
+          enemyStrength={bossStrength}
           closeModal={closeModal}
-          respawnEnemy={respawnEnemy}
           setPlayerStrength={setPlayerStrength}
-          setEnemyStrength={setEnemyStrength}
+          isBoss={true} // Pass the isBoss prop
         />
       )}
     </div>

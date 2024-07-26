@@ -1,13 +1,22 @@
 import React from "react";
 import "./Stats.css";
-const Stats = ({ enemyHealth, enemyStrength }) => {
+const Stats = ({
+  enemyHealth,
+  enemyStrength,
+  isBoss,
+  currentEnemy,
+  bossHealth,
+  bossStrength,
+}) => {
   return (
     <div className="enemy-stats">
       <div className="enemy-stats-wrapper">
         <div className="enemy-stats-content">
-          <h2 className="enemy-stats-header">🤖Enemy Stats</h2>
-          <p>🖤HP: {enemyHealth}</p>
-          <p>⚔️Strength: {enemyStrength}</p>
+          <h2 className="enemy-stats-header">
+            {isBoss ? "💀Boss Enemy" : "🤖Regular Enemy"}
+          </h2>
+          <p>🖤HP: {currentEnemy === 1 ? enemyHealth : bossHealth}</p>
+          <p>⚔️Strength: {currentEnemy === 1 ? enemyStrength : bossStrength}</p>
         </div>
       </div>
     </div>

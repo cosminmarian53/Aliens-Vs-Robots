@@ -22,7 +22,11 @@ const App = () => {
   const [playerStrength, setPlayerStrength] = useState(10); // Assuming initial strength is 10
   const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10
   const [isDoorOpen, setIsDoorOpen] = useState(false);
+  const [bossHealth, setBossHealth] = useState(150);
+  const [bossStrength, setBossStrength] = useState(20);
 
+  const [currentEnemy, setCurrentEnemy] = useState(1);
+  const isBoss = currentEnemy === 1 ? false : true;
   return (
     <Provider store={store}>
       <>
@@ -52,10 +56,21 @@ const App = () => {
                   setEnemyStrength={setEnemyStrength}
                   isDoorOpen={isDoorOpen}
                   setIsDoorOpen={setIsDoorOpen}
+                  bossHealth={bossHealth}
+                  setBossHealth={setBossHealth}
+                  bossStrength={bossStrength}
+                  isBoss={isBoss}
+                  currentEnemy={currentEnemy}
+                  setCurrentEnemy={setCurrentEnemy}
                 />
                 <NPCStats
                   enemyHealth={enemyHealth}
                   enemyStrength={enemyStrength}
+                  isBoss={isBoss}
+                  currentEnemy={currentEnemy}
+                  setCurrentEnemy={setCurrentEnemy}
+                  bossHealth={bossHealth}
+                  bossStrength={bossStrength}
                 />
               </div>
               <PlayerController

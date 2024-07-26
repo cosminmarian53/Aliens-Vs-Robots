@@ -107,6 +107,11 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.cell.boss {
+  background-image: url("../../public/boss.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 /* MODAL */
 .no-scroll {
   overflow: hidden;

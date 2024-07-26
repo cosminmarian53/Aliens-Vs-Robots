@@ -24,6 +24,12 @@ const MapBase = ({
   setEnemyStrength,
   isDoorOpen,
   setIsDoorOpen,
+  bossHealth,
+  setBossHealth,
+  bossStrength,
+  isBoss,
+  currentEnemy,
+  setCurrentEnemy,
 }) => {
   const size = 10;
   const [showBossArena, setShowBossArena] = useState(false);
@@ -129,7 +135,18 @@ const MapBase = ({
   };
 
   if (showBossArena) {
-    return <BossArena />;
+    isBoss = true;
+    setCurrentEnemy(2);
+    return (
+      <BossArena
+        isModalOpen={isModalOpen}
+        bossHealth={bossHealth}
+        setBossHealth={setBossHealth}
+        bossStrength={bossStrength}
+        setIsModalOpen={setIsModalOpen}
+        isBoss={isBoss}
+      />
+    );
   }
 
   return (

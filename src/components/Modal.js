@@ -13,6 +13,7 @@ const Modal = ({
   setPlayerStrength,
   setEnemyStrength,
   respawnEnemy,
+  isBoss,
 }) => {
   const [isAttackTime, setIsAttackTime] = useState(false);
   const [isDefendTime, setIsDefendTime] = useState(false);
