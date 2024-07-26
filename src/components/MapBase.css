@@ -113,7 +113,7 @@
 }
 /* CELLS-BOSS ARENA */
 .boss-tile {
-  background-image: url("../../public/boss_tile.png");
+  background-image: url("../../public/mud_tile.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
