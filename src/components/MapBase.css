@@ -1,22 +1,17 @@
 /* src/components/MapBase.css */
+/* MAP BASE */
 .map-base-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .map-base-table {
   display: inline-block;
-}
-.cell.solid-block {
-  background-image: url("../../public/block.png");
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 .row {
   display: flex;
 }
-
+/*  CELLS */
 .cell {
   width: 50px;
   height: 50px;
@@ -26,7 +21,11 @@
   background-repeat: no-repeat;
   /* Adjust the duration and timing function as needed */
 }
-
+.cell.solid-block {
+  background-image: url("../../public/block.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 .cell.player {
   background-image: url("../../public/GIFS/IDLE/alien front.gif");
   background-size: cover;
@@ -40,8 +39,13 @@
   /* background displays black for some reason, and it should be transparent, fix it */
   background-color: transparent;
 }
-.cell.door{
+.cell.door-closed {
   background-image: url("../../public/door.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cell.door-open {
+  background-image: url("../../public/door_open.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -65,13 +69,7 @@
 .cell.border-bottom {
   transform: rotate(0deg); /* Optional, defaults to no rotation */
 }
-/* media query for cells to fit mobile */
-@media (max-width: 600px) {
-  .cell {
-    width: 35px;
-    height: 35px;
-  }
-}
+
 /* CHARACTHER MODEL */
 .cell.player-up {
   background-image: url("../../public/GIFS/MOVING/alien\ front\(move+blink\).gif");
@@ -103,11 +101,16 @@
   background-repeat: no-repeat;
   background-color: transparent;
 }
+/* CELLS-BOSS ARENA */
+.boss-tile {
+  background-image: url("../../public/boss_tile.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 /* MODAL */
 .no-scroll {
   overflow: hidden;
 }
-
 .modal {
   position: fixed;
   top: 0;
@@ -124,9 +127,9 @@
   font-size: 1.5rem;
 }
 .modal-content {
-  background:  url("../../public/bigframe.gif");
+  background: url("../../public/bigframe.gif");
   background-color: white;
-  padding:60px 30px;
+  padding: 60px 30px;
   border-radius: 5px;
   position: relative;
   background-size: cover;
@@ -262,7 +265,7 @@
 .attack-modal-btn:active {
   transform: translateY(5px);
 }
-.map-border{
+.map-border {
   background-image: url("../../public/spike\ border.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -323,6 +326,8 @@
 .shake {
   animation: shake 0.5s;
 }
+
+/* media queries for cells to fit mobile */
 @media screen and (max-width: 768px) {
   .modal-content {
     padding: 25px;
@@ -331,5 +336,11 @@
   }
   .enemy-status {
     margin-left: 5px;
+  }
+}
+@media (max-width: 600px) {
+  .cell {
+    width: 35px;
+    height: 35px;
   }
 }

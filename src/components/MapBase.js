@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
 import Modal from "./Modal";
+import BossArena from "./BossArena";
 
 const MapBase = ({
   player,
@@ -21,8 +22,11 @@ const MapBase = ({
   setPlayerStrength,
   enemyStrength,
   setEnemyStrength,
+  isDoorOpen,
+  setIsDoorOpen,
 }) => {
   const size = 10;
+  const [showBossArena, setShowBossArena] = useState(false);
 
   const createMapMatrix = () => {
     const matrix = Array.from({ length: size }, () => Array(size).fill(0));
@@ -37,8 +41,8 @@ const MapBase = ({
       matrix[0][j] = 1;
       matrix[size - 1][j] = 1;
     }
-    // define coordonates for the door
-    matrix[8][5] = 8;
+    // define coordinates for the door
+    matrix[8][5] = 8; // Door is a solid block if not open
     // Add solid blocks to the matrix
     solidBlocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
@@ -72,8 +76,9 @@ const MapBase = ({
             className = "npc";
           } else if (cell === 4) {
             className = "solid-block";
+          } else if (cell === 8) {
+            className = isDoorOpen ? "door-open" : "door-closed";
           }
-          cell === 8 && (className = "door");
           return <div key={colIndex} className={`cell ${className}`}></div>;
         })}
       </div>
@@ -94,6 +99,18 @@ const MapBase = ({
     }
   }, [isModalOpen]);
 
+  useEffect(() => {
+    if (enemyHealth <= 0) {
+      setIsDoorOpen(true);
+    }
+  }, [enemyHealth]);
+
+  useEffect(() => {
+    if (isDoorOpen && player.x === 5 && player.y === 8) {
+      setShowBossArena(true);
+    }
+  }, [player, isDoorOpen]);
+
   const closeModal = () => {
     setIsModalOpen(false);
     const randomX = Math.floor(Math.random() * (size - 2)) + 1;
@@ -110,6 +127,10 @@ const MapBase = ({
     setEnemyHealth(100); // Reset enemy health to 100
     closeModal();
   };
+
+  if (showBossArena) {
+    return <BossArena />;
+  }
 
   return (
     <div className="map-base-container">

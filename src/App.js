@@ -18,9 +18,11 @@ const App = () => {
   const [isRight, setIsRight] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerHealth, setPlayerHealth] = useState(100); // Assuming initial health is 100
-  const [enemyHealth, setEnemyHealth] = useState(100); // Assuming initial health is 100
+  const [enemyHealth, setEnemyHealth] = useState(1); // Assuming initial health is 100
   const [playerStrength, setPlayerStrength] = useState(10); // Assuming initial strength is 10
   const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10
+  const [isDoorOpen, setIsDoorOpen] = useState(false);
+
   return (
     <Provider store={store}>
       <>
@@ -48,6 +50,8 @@ const App = () => {
                   setPlayerStrength={setPlayerStrength}
                   enemyStrength={enemyStrength}
                   setEnemyStrength={setEnemyStrength}
+                  isDoorOpen={isDoorOpen}
+                  setIsDoorOpen={setIsDoorOpen}
                 />
                 <NPCStats
                   enemyHealth={enemyHealth}
