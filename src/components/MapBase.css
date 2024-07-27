@@ -262,7 +262,7 @@
   text-align: center;
   animation: blink 0.3s infinite;
 }
-.boss-img{
+.boss-img {
   width: 100px;
   height: 100px;
   background-image: url("../../public/boss.gif");
@@ -270,7 +270,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-.boss-arena-wall{
+.boss-arena-wall {
   background-image: url("../../public/wall.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -335,7 +335,60 @@
 .close-modal-btn:active {
   transform: translateY(5px);
 }
+.safe-zone-tile {
+  background-image: url("../../public/map3_assets/map3floor.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.safe-zone-border-pipeline {
+  background-image: url("../../public/map3_assets/longpipe\ \(1\).png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.safe-zone-border-pipeline-left-down {
+  background-image: url("../../public/map3_assets/edge\ left\ down.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.safe-zone-border-pipeline-bottom {
+  background-image: url("../../public/map3_assets/longpipe\ \(1\).png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: rotate(270deg);
+}
+.safe-zone-border-pipeline-top {
+  background-image: url("../../public/map3_assets/longpipe\ \(1\).png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: rotate(90deg);
+}
+.safe-zone-border-pipeline-right {
+  background-image: url("../../public/map3_assets/longpipe\ \(1\).png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+}
+.safe-zone-border-pipeline-left-up {
+  background-image: url("../../public/map3_assets/edge\ left\ up.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.safe-zone-border-pipeline-right-up {
+  background-image: url("../../public/map3_assets/edge\ right\ up.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.safe-zone-border-pipeline-right-bottom {
+  background-image: url("../../public/map3_assets/edge\ right\ down.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.safe-zone-border-pipeline-left-bottom {
+  background-image: url("../../public/map3_assets/edge\ left\ down.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 
+}
 /* ATTACKED ANIMATION */
 @keyframes shake {
   0% {

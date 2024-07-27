@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
 import Modal from "./Modal";
+import SafeArea from "./SafeArea";
 
 const BossArena = ({
   player,
@@ -28,6 +29,8 @@ const BossArena = ({
 }) => {
   const size = 10;
   const [isDoorOpen, setIsDoorOpen] = useState(false);
+  const [showSafeArea, setShowSafeArea] = useState(false);
+
   const createMapMatrix = () => {
     const matrix = Array.from({ length: size }, () => Array(size).fill(0));
 
@@ -86,11 +89,13 @@ const BossArena = ({
       </div>
     ));
   };
+
   useEffect(() => {
     if (bossHealth === 0) {
       setIsDoorOpen(true);
     }
-  }, [player, setIsDoorOpen]);
+  }, [bossHealth]);
+
   useEffect(() => {
     if (player.x === npc.x && player.y === npc.y) {
       setIsModalOpen(true);
@@ -112,6 +117,11 @@ const BossArena = ({
     npc.x = randomX;
     npc.y = randomY;
   };
+  useEffect(() => {
+    if (bossHealth <= 0 && isDoorOpen) {
+      setShowSafeArea(true);
+    }
+  }, [player, isDoorOpen]);
   const defeteatBoss = () => {
     if (bossHealth === 0) {
       setIsModalOpen(false);
@@ -121,6 +131,13 @@ const BossArena = ({
       alert("🎊You defeated the boss!");
     }
   };
+
+  if (showSafeArea) {
+    return (
+      <SafeArea isUp={isUp} isDown={isDown} isLeft={isLeft} isRight={isRight} />
+    );
+  }
+
   return (
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>

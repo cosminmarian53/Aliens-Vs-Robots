@@ -149,6 +149,10 @@ const MapBase = ({
         bossStrength={bossStrength}
         setIsModalOpen={setIsModalOpen}
         isBoss={isBoss}
+        isUp={isUp}
+        isDown={isDown}
+        isLeft={isLeft}
+        isRight={isRight}
       />
     );
   }
