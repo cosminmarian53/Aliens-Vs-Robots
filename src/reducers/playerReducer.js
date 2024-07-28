@@ -4,6 +4,9 @@ import {
   INCREMENT_Y,
   DECREMENT_Y,
   MOVE_NPC,
+  SET_SAFE_AREA,
+  SET_SOLID_BLOCKS,
+  SET_SAFE_AREA_BLOCKS,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -11,7 +14,6 @@ const initialState = {
   npc: { x: 7, y: 8 },
   solidBlocks: [
     { x: 4, y: 6 },
-    // add more random located blocks
     { x: 1, y: 3 },
     { x: 5, y: 5 },
     { x: 8, y: 2 },
@@ -22,9 +24,18 @@ const initialState = {
     { x: 7, y: 7 },
     { x: 4, y: 2 },
   ],
+  isSafeArea: false,
+  safeAreaBlocks: [
+    { x: 3, y: 1 },
+    { x: 3, y: 2 },
+    { x: 6, y: 2 },
+    { x: 6, y: 1 },
+    { x: 4, y: 1 },
+  ],
 };
-const isSolidBlock = (x, y, solidBlocks) => {
-  return solidBlocks.some((block) => block.x === x && block.y === y);
+
+const isSolidBlock = (x, y, blocks) => {
+  return blocks.some((block) => block.x === x && block.y === y);
 };
 
 const size = 10;
@@ -36,11 +47,15 @@ const getRandomMove = (position) => {
 };
 
 const playerReducer = (state = initialState, action) => {
+  const currentBlocks = state.isSafeArea
+    ? state.safeAreaBlocks
+    : state.solidBlocks;
+
   switch (action.type) {
     case INCREMENT_X: {
       const newX =
         state.player.x < size - 2 ? state.player.x + 1 : state.player.x;
-      if (isSolidBlock(newX, state.player.y, state.solidBlocks)) {
+      if (isSolidBlock(newX, state.player.y, currentBlocks)) {
         return state; // No movement if there's a solid block
       }
       return {
@@ -53,7 +68,7 @@ const playerReducer = (state = initialState, action) => {
     }
     case DECREMENT_X: {
       const newX = state.player.x > 1 ? state.player.x - 1 : state.player.x;
-      if (isSolidBlock(newX, state.player.y, state.solidBlocks)) {
+      if (isSolidBlock(newX, state.player.y, currentBlocks)) {
         return state; // No movement if there's a solid block
       }
       return {
@@ -67,7 +82,7 @@ const playerReducer = (state = initialState, action) => {
     case INCREMENT_Y: {
       const newY =
         state.player.y < size - 2 ? state.player.y + 1 : state.player.y;
-      if (isSolidBlock(state.player.x, newY, state.solidBlocks)) {
+      if (isSolidBlock(state.player.x, newY, currentBlocks)) {
         return state; // No movement if there's a solid block
       }
       return {
@@ -80,7 +95,7 @@ const playerReducer = (state = initialState, action) => {
     }
     case DECREMENT_Y: {
       const newY = state.player.y > 1 ? state.player.y - 1 : state.player.y;
-      if (isSolidBlock(state.player.x, newY, state.solidBlocks)) {
+      if (isSolidBlock(state.player.x, newY, currentBlocks)) {
         return state; // No movement if there's a solid block
       }
       return {
@@ -101,7 +116,7 @@ const playerReducer = (state = initialState, action) => {
         newX < size - 1 &&
         newY > 0 &&
         newY < size - 1 &&
-        !isSolidBlock(newX, newY, state.solidBlocks) &&
+        !isSolidBlock(newX, newY, currentBlocks) &&
         !(newX === 0 && newY === 2); // Exclude the door position
 
       if (!isValidMove) {
@@ -116,8 +131,27 @@ const playerReducer = (state = initialState, action) => {
         },
       };
     }
+    case SET_SAFE_AREA: {
+      return {
+        ...state,
+        isSafeArea: action.payload,
+      };
+    }
+    case SET_SOLID_BLOCKS: {
+      return {
+        ...state,
+        solidBlocks: action.payload,
+      };
+    }
+    case SET_SAFE_AREA_BLOCKS: {
+      return {
+        ...state,
+        safeAreaBlocks: action.payload,
+      };
+    }
     default:
       return state;
   }
 };
+
 export default playerReducer;

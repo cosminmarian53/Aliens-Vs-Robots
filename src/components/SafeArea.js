@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import "./MapBase.css";
 const SafeArea = ({
   player,
-  npc,
-  safeAreaSolidBlocks,
+  safeAreaBlocks,
   isUp,
   isDown,
   isLeft,
@@ -32,10 +31,12 @@ const SafeArea = ({
     matrix[size - 1][size - 1] = 6;
     // PLayer
     matrix[player.y][player.x] = 2;
-    // // solid blocks
-    // safeAreaSolidBlocks.forEach((block) => {
-    //   matrix[block.y][block.x] = 4;
-    // });
+    // // solid blocks-safe area
+    matrix[1][3] = 4;
+    matrix[2][3] = 13;
+    matrix[2][6] = 13;
+    matrix[1][6] = 4;
+    matrix[1][4] = 14;
     return matrix;
   };
 
@@ -57,8 +58,6 @@ const SafeArea = ({
               (isRight ? "player-right" : "") ||
               "player"
             }`;
-          } else if (cell === 4) {
-            className = "solid-block";
           } else if (cell === 11) {
             className = "safe-zone-border-pipeline-left-up";
           } else if (cell === 7) {
@@ -73,6 +72,12 @@ const SafeArea = ({
             className = "safe-zone-border-pipeline-left-bottom";
           } else if (cell === 6) {
             className = "safe-zone-border-pipeline-right-bottom";
+          } else if (cell === 4) {
+            className = "tower-upper";
+          } else if (cell === 13) {
+            className = "tower-lower";
+          } else if (cell === 14) {
+            className = "xeno-npc";
           }
 
           return (
@@ -103,7 +108,8 @@ const SafeArea = ({
 
 const mapStateToProps = (state) => ({
   player: state.player.player,
-  npc: state.player.npc,
+  safeAreaBlocks: state.player.safeAreaBlocks,
+  isSafeArea: state.player.isSafeArea,
 });
 
 export default connect(mapStateToProps)(SafeArea);

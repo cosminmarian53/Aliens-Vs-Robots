@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { setSafeArea } from "../actions/actions"; // Import the action creator
 import "./MapBase.css";
 import Modal from "./Modal";
 import SafeArea from "./SafeArea";
@@ -8,6 +9,8 @@ const BossArena = ({
   player,
   npc,
   solidBlocks,
+  safeAreaBlocks,
+  isSafeArea,
   isUp,
   isDown,
   isLeft,
@@ -26,6 +29,7 @@ const BossArena = ({
   setBossHealth,
   bossStrength,
   isBoss,
+  setSafeArea, // Add the action creator to props
 }) => {
   const size = 10;
   const [isDoorOpen, setIsDoorOpen] = useState(false);
@@ -46,8 +50,10 @@ const BossArena = ({
     }
     // define coordinates for the door
     matrix[7][5] = 8;
-    // Add solid blocks to the matrix
-    solidBlocks.forEach((block) => {
+
+    // Add solid blocks or safe area blocks to the matrix
+    const blocks = isSafeArea ? safeAreaBlocks : solidBlocks;
+    blocks.forEach((block) => {
       matrix[block.y][block.x] = 4;
     });
 
@@ -117,11 +123,14 @@ const BossArena = ({
     npc.x = randomX;
     npc.y = randomY;
   };
+
   useEffect(() => {
     if (bossHealth <= 0 && isDoorOpen) {
       setShowSafeArea(true);
+      setSafeArea(true); // Dispatch the action to update isSafeArea
     }
   }, [player, isDoorOpen]);
+
   const defeteatBoss = () => {
     if (bossHealth === 0) {
       setIsModalOpen(false);
@@ -163,6 +172,12 @@ const mapStateToProps = (state) => ({
   player: state.player.player,
   npc: state.player.npc,
   solidBlocks: state.player.solidBlocks,
+  safeAreaBlocks: state.player.safeAreaBlocks,
+  isSafeArea: state.player.isSafeArea,
 });
 
-export default connect(mapStateToProps)(BossArena);
+const mapDispatchToProps = {
+  setSafeArea,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BossArena);

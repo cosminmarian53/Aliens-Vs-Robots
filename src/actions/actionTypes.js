@@ -4,4 +4,6 @@ export const INCREMENT_Y = "INCREMENT_Y";
 export const DECREMENT_Y = "DECREMENT_Y";
 export const SET_PLAYER_IMAGE = "SET_PLAYER_IMAGE";
 export const MOVE_NPC = "MOVE_NPC";
-export const SHOW_SAFE_AREA = "SHOW_SAFE_AREA";
+export const SET_SAFE_AREA = "SET_SAFE_AREA";
+export const SET_SOLID_BLOCKS = "SET_SOLID_BLOCKS";
+export const SET_SAFE_AREA_BLOCKS = "SET_SAFE_AREA_BLOCKS";

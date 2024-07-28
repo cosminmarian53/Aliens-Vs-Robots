@@ -335,6 +335,7 @@
 .close-modal-btn:active {
   transform: translateY(5px);
 }
+/* SAFE ZONE */
 .safe-zone-tile {
   background-image: url("../../public/map3_assets/map3floor.png");
   background-size: cover;
@@ -388,6 +389,21 @@
   background-size: cover;
   background-repeat: no-repeat;
 
+}
+.tower-upper{
+  background-image: url("../../public/map3_assets/half\ tower\ up.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.tower-lower{
+  background-image: url("../../public/map3_assets/half\ tower\ down.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.xeno-npc{
+  background-image: url("../../public/map3_assets/xenompoph.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 /* ATTACKED ANIMATION */
 @keyframes shake {
