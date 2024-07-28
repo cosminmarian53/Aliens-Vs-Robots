@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
-const SafeArea = ({
-  player,
-  safeAreaBlocks,
-  isUp,
-  isDown,
-  isLeft,
-  isRight,
-  isModalOpen,
-}) => {
+import Typewriter from "./Typewritter";
+
+const SafeArea = ({ player, isUp, isDown, isLeft, isRight, isModalOpen }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [talkCounter, setTalkCounter] = useState(0);
+
+  const dialogues = [
+    "Welcome to the safe area, soldier! You can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
+    "You can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
+    "Also, don't forget to finish your quests in order to get rewards!",
+  ];
 
   const size = 10;
   const createMapMatrix = () => {
@@ -31,14 +32,45 @@ const SafeArea = ({
     matrix[0][size - 1] = 12;
     matrix[size - 1][0] = 10;
     matrix[size - 1][size - 1] = 6;
-    // PLayer
+    // Player
     matrix[player.y][player.x] = 2;
-    // // solid blocks-safe area
+    // solid blocks-safe area-npc and tower
     matrix[1][3] = 4;
     matrix[2][3] = 13;
     matrix[2][6] = 13;
     matrix[1][6] = 4;
     matrix[1][4] = 14;
+    matrix[1][5] = 15;
+    matrix[6][6] = 13;
+    matrix[5][6] = 4;
+    matrix[6][3] = 13;
+    matrix[5][3] = 4;
+    // water decoration-first column
+    matrix[1][1] = 16;
+    matrix[2][1] = 16;
+    matrix[3][1] = 16;
+    matrix[4][1] = 16;
+    matrix[5][1] = 16;
+    matrix[6][1] = 16;
+    matrix[7][1] = 16;
+    matrix[8][1] = 16;
+    // water decoration-last column
+    matrix[1][8] = 16;
+    matrix[2][8] = 16;
+    matrix[3][8] = 16;
+    matrix[4][8] = 16;
+    matrix[5][8] = 16;
+    matrix[6][8] = 16;
+    matrix[7][8] = 16;
+    matrix[8][8] = 16;
+    // water decoration-last row
+    matrix[8][2] = 16;
+    matrix[8][3] = 16;
+    matrix[8][4] = 16;
+    matrix[8][5] = 16;
+    matrix[8][6] = 16;
+    matrix[8][7] = 16;
+    matrix[8][8] = 16;
     return matrix;
   };
 
@@ -80,6 +112,10 @@ const SafeArea = ({
             className = "tower-lower";
           } else if (cell === 14) {
             className = "xeno-npc";
+          } else if (cell === 15) {
+            className = "egg-decoration";
+          } else if (cell === 16) {
+            className = "water-decoration";
           }
 
           return (
@@ -105,6 +141,7 @@ const SafeArea = ({
     const handleKeyDown = (event) => {
       if (event.key === " " && player.x === 4 && player.y === 2) {
         setModalOpen(true);
+        setTalkCounter((prevCounter) => prevCounter + 1);
       }
     };
 
@@ -118,16 +155,35 @@ const SafeArea = ({
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>
       {modalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <button
-              className="close-modal"
-              onClick={() => {
-                setModalOpen(!modalOpen);
-              }}
-            >
-              Close
-            </button>
+        <div className="modal-safe-area">
+          <div className="modal-content-safe-area">
+            <div className="alien-npc-box">
+              <div className="alien-npc-wrapper">
+                <h2 className="alien-npc-name">Alien General X.E.N.O</h2>
+                <div className="alien-npc-image"></div>
+                <div className="alien-npc-dialogue">
+                  <Typewriter
+                    text={
+                      talkCounter >= 3
+                        ? dialogues[2]
+                        : talkCounter >= 2
+                        ? dialogues[1]
+                        : dialogues[0]
+                    }
+                    speed={50}
+                    wordsPerLine={20}
+                  />
+                </div>
+              </div>
+              <button
+                className="close-modal-btn"
+                onClick={() => {
+                  setModalOpen(!modalOpen);
+                }}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

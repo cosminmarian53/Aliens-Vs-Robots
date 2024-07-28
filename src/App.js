@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import PlayerStats from "./components/PlayerStats";
 import NPCStats from "./components/NPCStats";
 import GameOver from "./components/GameOver";
+import Quests from "./components/Quests";
 const App = () => {
   // Define all states
   const [isUp, setIsUp] = useState(false);
@@ -18,11 +19,11 @@ const App = () => {
   const [isRight, setIsRight] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerHealth, setPlayerHealth] = useState(100); // Assuming initial health is 100
-  const [enemyHealth, setEnemyHealth] = useState(10); // Assuming initial health is 100
+  const [enemyHealth, setEnemyHealth] = useState(1); // Assuming initial health is 100
   const [playerStrength, setPlayerStrength] = useState(10); // Assuming initial strength is 10
   const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10
   const [isDoorOpen, setIsDoorOpen] = useState(false);
-  const [bossHealth, setBossHealth] = useState(10);
+  const [bossHealth, setBossHealth] = useState(1);
   const [bossStrength, setBossStrength] = useState(20);
 
   const [currentEnemy, setCurrentEnemy] = useState(1);
@@ -93,6 +94,7 @@ const App = () => {
           ) : (
             <GameOver />
           )}
+          <Quests />
           <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
         </div>
       </>
