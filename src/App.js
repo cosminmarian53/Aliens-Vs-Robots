@@ -47,8 +47,7 @@ const App = () => {
   if (!hasEntered) {
     return (
       <>
-        {" "}
-        <Header /> <StarterScreen />{" "}
+        <Header /> <StarterScreen />
         <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
       </>
     );
