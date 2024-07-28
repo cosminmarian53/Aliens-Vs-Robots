@@ -157,6 +157,52 @@ font-family: "ArcadeClassic", sans-serif;
   text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
     3px -3px 0 #000, 0px 0px 5px #000;
 }
+.game-left-side{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 45vh;
+}
+.quest-container {
+  background-image: url("../public/alien_monitor\ .png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+}
+.quest-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.quest-container h1{
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
+    3px -3px 0 #000, 0px 0px 5px #000;
+}
+.quest-container p{
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
+    3px -3px 0 #000, 0px 0px 5px #000;
+}
 .refresh-btn {
   font-family: "ArcadeClassic", sans-serif;
   font-size: 1.3rem;
@@ -222,5 +268,12 @@ font-family: "ArcadeClassic", sans-serif;
     background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
+  }
+  .quest-container {
+    width: 200px;
+    height: 200px;
+  }
+  .game-left-side{
+    padding: 30px;
   }
 }

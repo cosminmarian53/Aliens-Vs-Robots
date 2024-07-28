@@ -30,6 +30,8 @@ const BossArena = ({
   bossStrength,
   isBoss,
   setSafeArea, // Add the action creator to props
+  talkCounter,
+  setTalkCounter,
 }) => {
   const size = 10;
   const [isDoorOpen, setIsDoorOpen] = useState(false);
@@ -143,7 +145,14 @@ const BossArena = ({
 
   if (showSafeArea) {
     return (
-      <SafeArea isUp={isUp} isDown={isDown} isLeft={isLeft} isRight={isRight} />
+      <SafeArea
+        isUp={isUp}
+        isDown={isDown}
+        isLeft={isLeft}
+        isRight={isRight}
+        talkCounter={talkCounter}
+        setTalkCounter={setTalkCounter}
+      />
     );
   }
 

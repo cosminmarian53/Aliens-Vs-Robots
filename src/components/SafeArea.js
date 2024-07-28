@@ -3,12 +3,20 @@ import { connect } from "react-redux";
 import "./MapBase.css";
 import Typewriter from "./Typewritter";
 
-const SafeArea = ({ player, isUp, isDown, isLeft, isRight, isModalOpen }) => {
+const SafeArea = ({
+  player,
+  isUp,
+  isDown,
+  isLeft,
+  isRight,
+  isModalOpen,
+  talkCounter,
+  setTalkCounter,
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [talkCounter, setTalkCounter] = useState(0);
 
   const dialogues = [
-    "Welcome to the safe area, soldier! You can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
+    "Welcome to the safe area, soldier!Thank you for saving me! I was able to run and hide from the robot invaders. This is my sanctuary, you can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
     "You can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
     "Also, don't forget to finish your quests in order to get rewards!",
   ];

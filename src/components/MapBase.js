@@ -30,6 +30,10 @@ const MapBase = ({
   isBoss,
   currentEnemy,
   setCurrentEnemy,
+  talkCounter,
+  setTalkCounter,
+  enemyDeathCounter,
+  setEnemyDeathCounter,
 }) => {
   const size = 10;
   const [showBossArena, setShowBossArena] = useState(false);
@@ -108,6 +112,7 @@ const MapBase = ({
   useEffect(() => {
     if (enemyHealth <= 0) {
       setIsDoorOpen(true);
+      setEnemyDeathCounter(enemyDeathCounter + 1);
     }
   }, [enemyHealth]);
 
@@ -153,6 +158,8 @@ const MapBase = ({
         isDown={isDown}
         isLeft={isLeft}
         isRight={isRight}
+        talkCounter={talkCounter}
+        setTalkCounter={setTalkCounter}
       />
     );
   }

@@ -25,9 +25,10 @@ const App = () => {
   const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10
   const [isDoorOpen, setIsDoorOpen] = useState(false);
   const [bossHealth, setBossHealth] = useState(1);
-  const [bossStrength, setBossStrength] = useState(20);
+  const [bossStrength] = useState(20);
   const [hasEntered, setHasEntered] = useState(false);
-
+  const [talkCounter, setTalkCounter] = useState(0);
+  const [enemyDeathCounter, setEnemyDeathCounter] = useState(0);
   const [currentEnemy, setCurrentEnemy] = useState(1);
   const isBoss = currentEnemy === 1 ? false : true;
   useEffect(() => {
@@ -61,10 +62,17 @@ const App = () => {
           {playerHealth > 0 ? (
             <main>
               <div className="game-container">
-                <PlayerStats
-                  playerHealth={playerHealth}
-                  playerStrength={playerStrength}
-                />
+                <div className="game-left-side">
+                  <PlayerStats
+                    playerHealth={playerHealth}
+                    playerStrength={playerStrength}
+                  />
+                  <Quests
+                    bossHealth={bossHealth}
+                    talkCounter={talkCounter}
+                    enemyDeathCounter={enemyDeathCounter}
+                  />
+                </div>
                 <MapBase
                   isDown={isDown}
                   isUp={isUp}
@@ -88,6 +96,10 @@ const App = () => {
                   isBoss={isBoss}
                   currentEnemy={currentEnemy}
                   setCurrentEnemy={setCurrentEnemy}
+                  talkCounter={talkCounter}
+                  setTalkCounter={setTalkCounter}
+                  enemyDeathCounter={enemyDeathCounter}
+                  setEnemyDeathCounter={setEnemyDeathCounter}
                 />
                 <NPCStats
                   enemyHealth={enemyHealth}
@@ -119,7 +131,6 @@ const App = () => {
           ) : (
             <GameOver />
           )}
-          <Quests />
           <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
         </div>
       </>
