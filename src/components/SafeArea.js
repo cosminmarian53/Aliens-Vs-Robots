@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./MapBase.css";
 const SafeArea = ({
@@ -10,6 +10,8 @@ const SafeArea = ({
   isRight,
   isModalOpen,
 }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const size = 10;
   const createMapMatrix = () => {
     const matrix = Array.from({ length: size }, () => Array(size).fill(0));
@@ -99,9 +101,36 @@ const SafeArea = ({
     }
   }, [isModalOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === " " && player.x === 4 && player.y === 2) {
+        setModalOpen(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [player]);
+
   return (
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>
+      {modalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <button
+              className="close-modal"
+              onClick={() => {
+                setModalOpen(!modalOpen);
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
