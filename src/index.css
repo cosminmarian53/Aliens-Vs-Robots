@@ -171,6 +171,44 @@ font-family: "ArcadeClassic", sans-serif;
 .refresh-btn:active {
   transform: translateY(3px);
 }
+.starter-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 45vh;
+}
+.starter-screen h1 {
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
+    3px -3px 0 #000, 0px 0px 5px #000;
+}
+.starter-screen h2 {
+  font-family: "ArcadeClassic", sans-serif;
+  text-decoration: underline;
+  font-size: 1.3rem;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
+    3px -3px 0 #000, 0px 0px 5px #000;
+}
+.starter-screen p {
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 1.3rem;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
+    3px -3px 0 #000, 0px 0px 5px #000;
+}
 /* MEDIA QUERIES-MOBILE ONLY */
 @media (max-width: 600px) {
   .game-container {

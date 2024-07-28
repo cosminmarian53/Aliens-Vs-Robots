@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PlayerController from "./components/PlayerController";
 import MapBase from "./components/MapBase";
 import NPCController from "./components/NPCController";
@@ -11,6 +11,7 @@ import PlayerStats from "./components/PlayerStats";
 import NPCStats from "./components/NPCStats";
 import GameOver from "./components/GameOver";
 import Quests from "./components/Quests";
+import StarterScreen from "./components/StarterScreen";
 const App = () => {
   // Define all states
   const [isUp, setIsUp] = useState(false);
@@ -25,9 +26,34 @@ const App = () => {
   const [isDoorOpen, setIsDoorOpen] = useState(false);
   const [bossHealth, setBossHealth] = useState(1);
   const [bossStrength, setBossStrength] = useState(20);
+  const [hasEntered, setHasEntered] = useState(false);
 
   const [currentEnemy, setCurrentEnemy] = useState(1);
   const isBoss = currentEnemy === 1 ? false : true;
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        setHasEntered(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+  if (!hasEntered) {
+    return (
+      <>
+        {" "}
+        <Header /> <StarterScreen />{" "}
+        <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
+      </>
+    );
+  }
+
   return (
     <Provider store={store}>
       <>
