@@ -1,6 +1,6 @@
 function Quests({ bossHealth, talkCounter, enemyDeathCounter }) {
   const completedStyle = {
-    color: "green",
+    color: "limegreen",
     textDecoration: "line-through",
   };
 
