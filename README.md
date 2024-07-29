@@ -69,4 +69,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# NOTE: The game is almost finished. Later, I will implement an NFT system, in which the player, after finishing the game, will receive a few NFT's based on their quest progress.
+#### NOTE: The game is almost finished. Later, I will implement an NFT system, in which the player, after finishing the game, will receive a few NFT's based on their quest progress.
