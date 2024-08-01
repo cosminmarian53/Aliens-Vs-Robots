@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/IBM-Project-Aliens-Vs-Robots/static/css/main.419b4f81.css",
-    "main.js": "/IBM-Project-Aliens-Vs-Robots/static/js/main.20f666f9.js",
+    "main.js": "/IBM-Project-Aliens-Vs-Robots/static/js/main.00047279.js",
     "static/media/battle_theme.mp3": "/IBM-Project-Aliens-Vs-Robots/static/media/battle_theme.42a72ca3774ef925c3e7.mp3",
     "static/media/main-theme.mp3": "/IBM-Project-Aliens-Vs-Robots/static/media/main-theme.b3db9877855eff33bf76.mp3",
     "static/media/boss.gif": "/IBM-Project-Aliens-Vs-Robots/static/media/boss.3351c3aaf2213bd6831a.gif",
@@ -37,10 +37,10 @@
     "static/media/move.mp3": "/IBM-Project-Aliens-Vs-Robots/static/media/move.61b046ede0d002a57052.mp3",
     "index.html": "/IBM-Project-Aliens-Vs-Robots/index.html",
     "main.419b4f81.css.map": "/IBM-Project-Aliens-Vs-Robots/static/css/main.419b4f81.css.map",
-    "main.20f666f9.js.map": "/IBM-Project-Aliens-Vs-Robots/static/js/main.20f666f9.js.map"
+    "main.00047279.js.map": "/IBM-Project-Aliens-Vs-Robots/static/js/main.00047279.js.map"
   },
   "entrypoints": [
     "static/css/main.419b4f81.css",
-    "static/js/main.20f666f9.js"
+    "static/js/main.00047279.js"
   ]
 }
