@@ -20,11 +20,11 @@ const App = () => {
   const [isRight, setIsRight] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [playerHealth, setPlayerHealth] = useState(100); // Assuming initial health is 100
-  const [enemyHealth, setEnemyHealth] = useState(1); // Assuming initial health is 100
+  const [enemyHealth, setEnemyHealth] = useState(100); // Assuming initial health is 100
   const [playerStrength, setPlayerStrength] = useState(10); // Assuming initial strength is 10
   const [enemyStrength, setEnemyStrength] = useState(10); // Assuming initial strength is 10
   const [isDoorOpen, setIsDoorOpen] = useState(false);
-  const [bossHealth, setBossHealth] = useState(1);
+  const [bossHealth, setBossHealth] = useState(200);
   const [bossStrength] = useState(20);
   const [hasEntered, setHasEntered] = useState(false);
   const [talkCounter, setTalkCounter] = useState(0);
