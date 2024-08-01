@@ -30,4 +30,6 @@ jobs:
     # typescript 5.0.2
     - run: npm ci --legacy-peer-deps
     - run: npm run build --if-present
+      env:
+        CI: false
     - run: npm test
