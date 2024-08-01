@@ -136,7 +136,7 @@ const MapBase = ({
     npc.x = randomX;
     npc.y = randomY;
     setEnemyHealth(
-      Math.max(enemyHealth, Math.floor(100 + (enemyDeathCounter + 1) * 1.5))
+      Math.max(enemyHealth, Math.floor(100 + (enemyDeathCounter + 1) * 1.2))
     ); // Reset enemy health to 100
     setEnemyStrength(enemyStrength * 1.2); // Reset enemy strength to 10
     closeModal();
