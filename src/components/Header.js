@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Header = ({ account }) => {
   return (
     <header>
       <div className="wavy">
@@ -28,6 +28,10 @@ const Header = () => {
           </span>
         </h1>
       </div>
+      <p className="sub-header">
+        👾Your account's address:<br></br>
+        {account}
+      </p>
       <p className="sub-header">Start the game by using the arrow keys!</p>
     </header>
   );

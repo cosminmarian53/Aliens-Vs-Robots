@@ -12,6 +12,7 @@ import NPCStats from "./components/NPCStats";
 import GameOver from "./components/GameOver";
 import Quests from "./components/Quests";
 import StarterScreen from "./components/StarterScreen";
+import Web3 from "web3";
 const App = () => {
   // Define all states
   const [isUp, setIsUp] = useState(false);
@@ -45,10 +46,31 @@ const App = () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+  const [account, setAccount] = useState("");
+
+  useEffect(() => {
+    // Connect to the blockchain
+    const loadWeb3 = async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const web3 = window.web3;
+        const accounts = await web3.eth.getAccounts();
+        setAccount(accounts[0]);
+      } else if (window.web3) {
+        window.web3 = new Web3(window.web3.currentProvider);
+      } else {
+        console.log(
+          "Non-Ethereum browser detected. You should consider trying MetaMask!"
+        );
+      }
+    };
+    loadWeb3();
+  }, []);
   if (!hasEntered) {
     return (
       <>
-        <Header /> <StarterScreen />
+        <Header account={account} /> <StarterScreen />
         <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
       </>
     );
@@ -58,7 +80,7 @@ const App = () => {
     <Provider store={store}>
       <>
         <div className="App">
-          {playerHealth > 0 && <Header />}
+          {playerHealth > 0 && <Header account={account} />}
           {playerHealth > 0 ? (
             <main>
               <div className="game-container">

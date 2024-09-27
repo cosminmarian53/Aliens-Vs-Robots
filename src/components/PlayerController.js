@@ -98,7 +98,7 @@ const PlayerController = ({
             }}
           >
             <img
-              src="up arrow.png"
+              src="../public/up_arrow.png"
               alt="Arrow Up"
               className="arrow-icon small"
             />
@@ -117,7 +117,7 @@ const PlayerController = ({
             }}
           >
             <img
-              src="down arrow.png"
+              src="../public/down_arrow.png"
               alt="Arrow Down"
               className="arrow-icon small"
             />
@@ -134,7 +134,7 @@ const PlayerController = ({
             }}
           >
             <img
-              src="right arrow.png"
+              src="../public/right_arrow.png"
               alt="Arrow Right"
               className="arrow-icon small"
             />
@@ -151,7 +151,7 @@ const PlayerController = ({
             }}
           >
             <img
-              src="left arrow.png"
+              src="../public/left_arrow.png"
               alt="Arrow Left"
               className="arrow-icon small"
             />
