@@ -10,7 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(31, 30, 30);
-  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6 )),
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6)),
     url("../public/background-site.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -79,7 +79,7 @@ body {
 }
 /* MAIN CONTENT OF APP */
 .game-container {
-  display: flex;  
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -122,8 +122,8 @@ footer {
   color: red;
   animation: blink 0.3s infinite;
 }
-.sound-btn{
-font-family: "ArcadeClassic", sans-serif;
+.sound-btn {
+  font-family: "ArcadeClassic", sans-serif;
   font-size: 1.3rem;
   padding: 10px 25px;
   text-align: center;
@@ -131,9 +131,8 @@ font-family: "ArcadeClassic", sans-serif;
   color: red;
   animation: blink 0.3s infinite;
   border-radius: 5px;
-
 }
-.sound-btn:active{
+.sound-btn:active {
   transform: translateY(3px);
 }
 /* GAME-OVER */
@@ -157,7 +156,7 @@ font-family: "ArcadeClassic", sans-serif;
   text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
     3px -3px 0 #000, 0px 0px 5px #000;
 }
-.game-left-side{
+.game-left-side {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -176,14 +175,14 @@ font-family: "ArcadeClassic", sans-serif;
   width: 250px;
   height: 250px;
 }
-.quest-content{
+.quest-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
-.quest-container h1{
+.quest-container h1 {
   font-family: "ArcadeClassic", sans-serif;
   font-size: 1.5rem;
   text-align: center;
@@ -193,7 +192,7 @@ font-family: "ArcadeClassic", sans-serif;
   text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
     3px -3px 0 #000, 0px 0px 5px #000;
 }
-.quest-container p{
+.quest-container p {
   font-family: "ArcadeClassic", sans-serif;
   font-size: 1rem;
   text-align: center;
@@ -214,8 +213,47 @@ font-family: "ArcadeClassic", sans-serif;
   border-radius: 5px;
   cursor: pointer;
 }
+.instructions-btn {
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 1.3rem;
+  padding: 10px 25px;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn {
+  font-family: "ArcadeClassic", sans-serif;
+  font-size: 1.3rem;
+  padding: 10px 25px;
+  text-align: center;
+  color: white;
+  color: red;
+  animation: blink 0.3s infinite;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .refresh-btn:active {
   transform: translateY(3px);
+}
+/* STARTER SCREEN */
+.starter-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 10px;
+  border: 2px solid black;
+  background-color: rgb(255, 255, 255);
+}
+.starter-modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .starter-screen {
   display: flex;
@@ -237,13 +275,11 @@ font-family: "ArcadeClassic", sans-serif;
 .starter-screen h2 {
   font-family: "ArcadeClassic", sans-serif;
   text-decoration: underline;
-  font-size: 1.3rem;
+  font-size: 1rem;
   text-align: center;
   color: white;
   color: red;
-  animation: blink 0.3s infinite;
-  text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
-    3px -3px 0 #000, 0px 0px 5px #000;
+  animation: none;
 }
 .starter-screen p {
   font-family: "ArcadeClassic", sans-serif;
@@ -255,6 +291,16 @@ font-family: "ArcadeClassic", sans-serif;
   text-shadow: 4px 3px 0 #000, -3px 3px 0 #000, -3px -3px 0 #000,
     3px -3px 0 #000, 0px 0px 5px #000;
 }
+.starter-screen .modal .starter-modal-content .starter-modal-wrapper p {
+  font-family: "ArcadeClassic", sans-serif;
+  text-decoration: none;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  color: red;
+  text-shadow: none;
+  animation: none;
+}
 /* MEDIA QUERIES-MOBILE ONLY */
 @media (max-width: 600px) {
   .game-container {
@@ -263,7 +309,7 @@ font-family: "ArcadeClassic", sans-serif;
   .main-header span {
     font-size: 3rem;
   }
-  body{
+  body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -273,7 +319,7 @@ font-family: "ArcadeClassic", sans-serif;
     width: 200px;
     height: 200px;
   }
-  .game-left-side{
+  .game-left-side {
     padding: 30px;
   }
 }
