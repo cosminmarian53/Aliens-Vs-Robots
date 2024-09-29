@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import alienPlayerStarter from "../assets/alien front(move+blink).gif";
 import "../index.css";
-function StarterScreen() {
+function StarterScreen({ hasEntered, setHasEntered }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="starter-screen">
@@ -20,8 +21,18 @@ function StarterScreen() {
             <div className="starter-modal-wrapper">
               <h2 className="starter-modal-header">Instructions:</h2>
               <p>
-                Welcome to Aliens vs. Robots! <br></br>Your goal is to defeat
-                the boss and save the Alien General to win the game!
+                Welcome to Aliens vs. Robots! <br></br>
+                <span>
+                  This is <b>you</b>:<br></br>
+                  <img
+                    src={alienPlayerStarter}
+                    className="intructions-player"
+                    alt="Alien Player"
+                  ></img>
+                  <br></br>
+                </span>
+                Your goal is to defeat the boss and save the Alien General to
+                win the game!
               </p>
               <p>Combat:</p>
               <p>I</p>
@@ -55,12 +66,18 @@ function StarterScreen() {
       <p>Defeat the boss to win the game(and get amazing rewards!)</p>
       <p>
         Press the
-        <button className="btn">
+        <button
+          className="btn"
+          onClick={() => {
+            setHasEntered(true);
+          }}
+        >
           {" "}
-          <b>ENTER</b>
+          <b>↩ENTER</b>
         </button>{" "}
         key in order to start the game❗
       </p>
+      <br></br>
     </div>
   );
 }

@@ -48,43 +48,49 @@ const App = () => {
   }, []);
   const [account, setAccount] = useState("");
 
-useEffect(() => {
-  // Connect to the blockchain
-  const loadWeb3 = async () => {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
-      const web3 = window.web3;
-      const accounts = await web3.eth.getAccounts();
-      setAccount(accounts[0]);
-
-      // Listen for account changes
-      window.ethereum.on("accountsChanged", (accounts) => {
+  useEffect(() => {
+    // Connect to the blockchain
+    const loadWeb3 = async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const web3 = window.web3;
+        const accounts = await web3.eth.getAccounts();
         setAccount(accounts[0]);
-      });
-    } else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider);
-    } else {
-      console.log(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
-      );
-    }
-  };
 
-  loadWeb3();
+        // Listen for account changes
+        window.ethereum.on("accountsChanged", (accounts) => {
+          setAccount(accounts[0]);
+        });
+      } else if (window.web3) {
+        window.web3 = new Web3(window.web3.currentProvider);
+      } else {
+        console.log(
+          "Non-Ethereum browser detected. You should consider trying MetaMask!"
+        );
+      }
+    };
 
-  // Cleanup function to remove the event listener
-  return () => {
-    if (window.ethereum && window.ethereum.removeListener) {
-      window.ethereum.removeListener("accountsChanged", setAccount);
-    }
-  };
-}, []);
+    loadWeb3();
+
+    // Cleanup function to remove the event listener
+    return () => {
+      if (window.ethereum && window.ethereum.removeListener) {
+        window.ethereum.removeListener("accountsChanged", setAccount);
+      }
+    };
+  }, []);
   if (!hasEntered) {
     return (
       <>
-        <Header account={account} /> <StarterScreen />
-        <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
+        <div className="player-starter-page">
+          <Header account={account} />{" "}
+          <StarterScreen
+            hasEntered={hasEntered}
+            setHasEntered={setHasEntered}
+          />
+          <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
+        </div>
       </>
     );
   }
