@@ -97,14 +97,24 @@
   .stats-content {
     font-size: 1rem;
   }
+  .enemy-stats-wrapper{
+    height: 200px;
+    width: 200px;
+    margin-top: 0;
+  }
   .label {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+  }
+  .arena-and-npc-stats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
   }
   .enemy-stats-header {
     font-size: 1rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 }

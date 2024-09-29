@@ -13,6 +13,7 @@ import GameOver from "./components/GameOver";
 import Quests from "./components/Quests";
 import StarterScreen from "./components/StarterScreen";
 import Web3 from "web3";
+
 const App = () => {
   // Define all states
   const [isUp, setIsUp] = useState(false);
@@ -32,6 +33,21 @@ const App = () => {
   const [enemyDeathCounter, setEnemyDeathCounter] = useState(0);
   const [currentEnemy, setCurrentEnemy] = useState(1);
   const isBoss = currentEnemy === 1 ? false : true;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
@@ -46,6 +62,7 @@ const App = () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+
   const [account, setAccount] = useState("");
 
   useEffect(() => {
@@ -80,6 +97,7 @@ const App = () => {
       }
     };
   }, []);
+
   if (!hasEntered) {
     return (
       <>
@@ -114,43 +132,89 @@ const App = () => {
                     enemyDeathCounter={enemyDeathCounter}
                   />
                 </div>
-                <MapBase
-                  isDown={isDown}
-                  isUp={isUp}
-                  isLeft={isLeft}
-                  isRight={isRight}
-                  isModalOpen={isModalOpen}
-                  setIsModalOpen={setIsModalOpen}
-                  enemyHealth={enemyHealth}
-                  setEnemyHealth={setEnemyHealth}
-                  playerHealth={playerHealth}
-                  setPlayerHealth={setPlayerHealth}
-                  playerStrength={playerStrength}
-                  setPlayerStrength={setPlayerStrength}
-                  enemyStrength={enemyStrength}
-                  setEnemyStrength={setEnemyStrength}
-                  isDoorOpen={isDoorOpen}
-                  setIsDoorOpen={setIsDoorOpen}
-                  bossHealth={bossHealth}
-                  setBossHealth={setBossHealth}
-                  bossStrength={bossStrength}
-                  isBoss={isBoss}
-                  currentEnemy={currentEnemy}
-                  setCurrentEnemy={setCurrentEnemy}
-                  talkCounter={talkCounter}
-                  setTalkCounter={setTalkCounter}
-                  enemyDeathCounter={enemyDeathCounter}
-                  setEnemyDeathCounter={setEnemyDeathCounter}
-                />
-                <NPCStats
-                  enemyHealth={enemyHealth}
-                  enemyStrength={enemyStrength}
-                  isBoss={isBoss}
-                  currentEnemy={currentEnemy}
-                  setCurrentEnemy={setCurrentEnemy}
-                  bossHealth={bossHealth}
-                  bossStrength={bossStrength}
-                />
+                {isMobile && (
+                  <div className="arena-and-npc-stats">
+                    <MapBase
+                      isDown={isDown}
+                      isUp={isUp}
+                      isLeft={isLeft}
+                      isRight={isRight}
+                      isModalOpen={isModalOpen}
+                      setIsModalOpen={setIsModalOpen}
+                      enemyHealth={enemyHealth}
+                      setEnemyHealth={setEnemyHealth}
+                      playerHealth={playerHealth}
+                      setPlayerHealth={setPlayerHealth}
+                      playerStrength={playerStrength}
+                      setPlayerStrength={setPlayerStrength}
+                      enemyStrength={enemyStrength}
+                      setEnemyStrength={setEnemyStrength}
+                      isDoorOpen={isDoorOpen}
+                      setIsDoorOpen={setIsDoorOpen}
+                      bossHealth={bossHealth}
+                      setBossHealth={setBossHealth}
+                      bossStrength={bossStrength}
+                      isBoss={isBoss}
+                      currentEnemy={currentEnemy}
+                      setCurrentEnemy={setCurrentEnemy}
+                      talkCounter={talkCounter}
+                      setTalkCounter={setTalkCounter}
+                      enemyDeathCounter={enemyDeathCounter}
+                      setEnemyDeathCounter={setEnemyDeathCounter}
+                    />
+                    <NPCStats
+                      enemyHealth={enemyHealth}
+                      enemyStrength={enemyStrength}
+                      isBoss={isBoss}
+                      currentEnemy={currentEnemy}
+                      setCurrentEnemy={setCurrentEnemy}
+                      bossHealth={bossHealth}
+                      bossStrength={bossStrength}
+                    />
+                  </div>
+                )}
+
+                {!isMobile && (
+                  <>
+                    <MapBase
+                      isDown={isDown}
+                      isUp={isUp}
+                      isLeft={isLeft}
+                      isRight={isRight}
+                      isModalOpen={isModalOpen}
+                      setIsModalOpen={setIsModalOpen}
+                      enemyHealth={enemyHealth}
+                      setEnemyHealth={setEnemyHealth}
+                      playerHealth={playerHealth}
+                      setPlayerHealth={setPlayerHealth}
+                      playerStrength={playerStrength}
+                      setPlayerStrength={setPlayerStrength}
+                      enemyStrength={enemyStrength}
+                      setEnemyStrength={setEnemyStrength}
+                      isDoorOpen={isDoorOpen}
+                      setIsDoorOpen={setIsDoorOpen}
+                      bossHealth={bossHealth}
+                      setBossHealth={setBossHealth}
+                      bossStrength={bossStrength}
+                      isBoss={isBoss}
+                      currentEnemy={currentEnemy}
+                      setCurrentEnemy={setCurrentEnemy}
+                      talkCounter={talkCounter}
+                      setTalkCounter={setTalkCounter}
+                      enemyDeathCounter={enemyDeathCounter}
+                      setEnemyDeathCounter={setEnemyDeathCounter}
+                    />
+                    <NPCStats
+                      enemyHealth={enemyHealth}
+                      enemyStrength={enemyStrength}
+                      isBoss={isBoss}
+                      currentEnemy={currentEnemy}
+                      setCurrentEnemy={setCurrentEnemy}
+                      bossHealth={bossHealth}
+                      bossStrength={bossStrength}
+                    />
+                  </>
+                )}
               </div>
               <PlayerController
                 setIsDown={setIsDown}

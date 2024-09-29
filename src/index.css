@@ -175,6 +175,7 @@ footer {
   width: 250px;
   height: 250px;
 }
+
 .quest-content {
   display: flex;
   flex-direction: column;
@@ -333,8 +334,20 @@ footer {
     width: 200px;
     height: 200px;
   }
+  .quest-container h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+  }
+  .quest-container p {
+    font-size: 0.9rem;
+  } 
   .game-left-side {
-    padding: 30px;
+    flex-direction: row;
+    margin-top: 0;
+    height: 25vh;
+    width: 100%;
+    padding: 10px;
+    margin-right: 15px;
   }
   /* STARTER SCREEN MOBILE */
   .player-starter-page{
