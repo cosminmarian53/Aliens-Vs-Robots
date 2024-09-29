@@ -315,7 +315,6 @@ footer {
 @media (max-width: 600px) {
   .game-container {
     flex-direction: column;
-    overflow: hidden;
   }
   .main-header span {
     font-size: 2.5rem;
@@ -327,7 +326,6 @@ footer {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    overflow: hidden;
     margin: 0;
     padding: 0;
   }

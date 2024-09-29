@@ -182,7 +182,7 @@ const Modal = ({
         <span className="close" onClick={closeModal}>
           &times;
         </span>
-        <p style={{ textAlign: "center" }}>
+        <p className="modal-combat-header" style={{ textAlign: "center" }}>
           {isBoss
             ? "☠️Boss Engaged❗❗❗"
             : "🤖Enemy spotted! Prepare to fight❗❗"}

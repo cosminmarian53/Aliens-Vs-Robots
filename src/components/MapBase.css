@@ -178,7 +178,7 @@
   padding: 10px;
   margin-bottom: 15px;
 }
-.cell.water-decoration{
+.cell.water-decoration {
   background-image: url("../../public/map3_assets/water.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -190,7 +190,7 @@
   right: 10px;
   cursor: pointer;
 }
-.cell.egg-decoration{
+.cell.egg-decoration {
   background-image: url("../../public/map3_assets/xenoegg.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -213,14 +213,13 @@
 }
 .modal-content-safe-area {
   /* white background with low opacity */
-  background-color: rgb(255, 255, 255,0.3);
-  padding:10px;
+  background-color: rgb(255, 255, 255, 0.3);
+  padding: 10px;
   border-radius: 5px;
   border: 5px solid black;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  
 }
 /* MODAL BUTTONS */
 .button-wrapper {
@@ -452,19 +451,18 @@
   background-image: url("../../public/map3_assets/edge\ left\ down.png");
   background-size: cover;
   background-repeat: no-repeat;
-
 }
-.tower-upper{
+.tower-upper {
   background-image: url("../../public/map3_assets/half\ tower\ up.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
-.tower-lower{
+.tower-lower {
   background-image: url("../../public/map3_assets/half\ tower\ down.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
-.xeno-npc{
+.xeno-npc {
   background-image: url("../../public/map3_assets/xenompoph.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -493,10 +491,22 @@
   .modal-content {
     padding: 25px;
     /* fit the right and le5ft side to screen */
-    width: 75%;
+    width: 100vw;
+    height: 100vh;
   }
-  .enemy-status {
-    margin-left: 5px;
+  .status-wrapper {
+    padding: 10px;
+  }
+  .modal-content{
+    /* resize the background image to fit mobile screen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+  }
+  .modal-content .modal-combat-header{
+    font-size: 1.5rem;
+    margin-top: 5.5rem;
   }
 }
 @media (max-width: 600px) {
