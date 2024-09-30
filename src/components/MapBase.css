@@ -398,6 +398,25 @@
 .close-modal-btn:active {
   transform: translateY(5px);
 }
+/* MINT NFT BUTTON */
+.mint-nft-btn {
+  background-color: rgb(0, 255, 255);
+  color: white;
+  padding: 10px 20px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "ArcadeClassic", sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+}
+.mint-nft-btn:hover {
+  background-color: rgb(0, 200, 200);
+  transition: 0.5s;
+}
+.mint-nft-btn:active {
+  transform: translateY(5px);
+}
 /* SAFE ZONE */
 .safe-zone-tile {
   background-image: url("../../public/map3_assets/map3floor.png");

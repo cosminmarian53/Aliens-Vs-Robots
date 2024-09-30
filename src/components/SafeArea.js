@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import Web3 from "web3";
 import "./MapBase.css";
 import Typewriter from "./Typewritter";
 
@@ -12,13 +13,17 @@ const SafeArea = ({
   isModalOpen,
   talkCounter,
   setTalkCounter,
+  questsCompleted,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [account, setAccount] = useState("");
+  const [hasMinted, setHasMinted] = useState(false);
 
   const dialogues = [
     "Welcome to the safe area, soldier!Thank you for saving me! I was able to run and hide from the robot invaders. This is my sanctuary, you can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
     "You can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
     "Also, don't forget to finish your quests in order to get rewards!",
+    "You have completed all the quests! You are now ready to mint your NFT!",
   ];
 
   const size = 10;
@@ -158,7 +163,50 @@ const SafeArea = ({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [player]);
+  // TESTING PURPOSES
+  useEffect(() => {
+    const loadWeb3 = async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+        const web3 = window.web3;
+        const accounts = await web3.eth.getAccounts();
+        setAccount(accounts[0]);
 
+        // Listen for account changes
+        window.ethereum.on("accountsChanged", (accounts) => {
+          setAccount(accounts[0]);
+        });
+      } else if (window.web3) {
+        window.web3 = new Web3(window.web3.currentProvider);
+      } else {
+        console.log(
+          "Non-Ethereum browser detected. You should consider trying MetaMask!"
+        );
+      }
+    };
+
+    loadWeb3();
+
+    // Cleanup function to remove the event listener
+    return () => {
+      if (window.ethereum && window.ethereum.removeListener) {
+        window.ethereum.removeListener("accountsChanged", setAccount);
+      }
+    };
+  }, []);
+  // END TESTING PURPOSES
+  // MINITING NFT TEST FUNCTION
+  const mintNFT = async () => {
+    if (!hasMinted) {
+      // Add your minting logic here
+      console.log("Minting NFT for account:", account);
+      setHasMinted(true);
+    } else {
+      console.log("NFT already minted for this account.");
+    }
+  };
+  // END MINITING NFT TEST FUNCTION
   return (
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>
@@ -172,7 +220,9 @@ const SafeArea = ({
                 <div className="alien-npc-dialogue">
                   <Typewriter
                     text={
-                      talkCounter >= 3
+                      talkCounter > 3
+                        ? dialogues[3]
+                        : talkCounter === 3
                         ? dialogues[2]
                         : talkCounter >= 2
                         ? dialogues[1]
@@ -191,6 +241,11 @@ const SafeArea = ({
               >
                 Close
               </button>
+              {talkCounter > 3 && (
+                <button className="mint-nft-btn" onClick={mintNFT}>
+                  Mint NFT
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -203,6 +258,7 @@ const mapStateToProps = (state) => ({
   player: state.player.player,
   safeAreaBlocks: state.player.safeAreaBlocks,
   isSafeArea: state.player.isSafeArea,
+  questsCompleted: state.player.questsCompleted,
 });
 
 export default connect(mapStateToProps)(SafeArea);
