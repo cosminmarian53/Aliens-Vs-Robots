@@ -1,25 +1,3 @@
-### Current README.md Analysis
-
-The current README.md contains the following sections:
-1. Getting Started with Create React App
-2. Available Scripts
-3. Learn More
-4. Note on future implementation of an NFT system.
-
-The Ethereum folder contains its own README.md detailing Foundry usage and Forge Standard Library.
-
-### Plan for Rewrite
-
-To make the README.md more informative and user-friendly, we can:
-1. Provide a more comprehensive project overview.
-2. Highlight key features and technologies used.
-3. Include detailed setup and installation instructions.
-4. Provide clear usage instructions and examples.
-5. Include a detailed section on the planned NFT system.
-6. Add contribution guidelines and contact information.
-
-### Draft of Rewritten README.md
-
 ```markdown
 # Aliens Vs Robots
 
