@@ -1,72 +1,141 @@
-# Getting Started with Create React App
+### Current README.md Analysis
+
+The current README.md contains the following sections:
+1. Getting Started with Create React App
+2. Available Scripts
+3. Learn More
+4. Note on future implementation of an NFT system.
+
+The Ethereum folder contains its own README.md detailing Foundry usage and Forge Standard Library.
+
+### Plan for Rewrite
+
+To make the README.md more informative and user-friendly, we can:
+1. Provide a more comprehensive project overview.
+2. Highlight key features and technologies used.
+3. Include detailed setup and installation instructions.
+4. Provide clear usage instructions and examples.
+5. Include a detailed section on the planned NFT system.
+6. Add contribution guidelines and contact information.
+
+### Draft of Rewritten README.md
+
+```markdown
+# Aliens Vs Robots
+
+IBM unpaid internship project for team Bytes.
+
+## Project Overview
+
+Aliens Vs Robots is an engaging web game developed using React, with plans to integrate a unique NFT system. Players can earn NFTs based on their quest progress upon completing the game.
+
+## Key Features
+
+- Engaging gameplay with a sci-fi theme.
+- Developed with React, utilizing JavaScript, CSS, and HTML.
+- Future integration of an NFT system to reward players.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **Foundry**: A toolkit for Ethereum application development, written in Rust.
+- **Forge**: Ethereum testing framework.
+- **Cast**: Swiss army knife for interacting with EVM smart contracts.
+- **Anvil**: Local Ethereum node.
+
+## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Prerequisites
+
+Make sure you have Node.js and npm installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/cosminmarian53/Aliens-Vs-Robots.git
+   cd Aliens-Vs-Robots
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+- `npm start`: Runs the app in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `npm test`: Launches the test runner in interactive watch mode.
+- `npm run build`: Builds the app for production.
+- `npm run eject`: Ejects the project from Create React App setup, giving full control over the build tools and configuration.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Foundry Usage
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Build
 
-### `npm test`
+```shell
+forge build
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Test
 
-### `npm run build`
+```shell
+forge test
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Format
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```shell
+forge fmt
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Gas Snapshots
 
-### `npm run eject`
+```shell
+forge snapshot
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Anvil
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```shell
+anvil
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Deploy
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```shell
+forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
 
-## Learn More
+### Cast
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```shell
+cast <subcommand>
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Help
 
-### Code Splitting
+```shell
+forge --help
+anvil --help
+cast --help
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contribution
 
-### Analyzing the Bundle Size
+We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) for more details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contact
 
-### Making a Progressive Web App
+For any inquiries or support, please contact [cosminmarian53](https://github.com/cosminmarian53).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+**Note**: The game is almost finished. Later, I will implement an NFT system, in which the player, after finishing the game, will receive a few NFTs based on their quest progress.
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-#### NOTE: The game is almost finished. Later, I will implement an NFT system, in which the player, after finishing the game, will receive a few NFT's based on their quest progress.
+Would you like to make any changes to this draft?
