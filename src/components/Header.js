@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Web3 from "web3";
+import React from "react";
 
-const Header = ({ wallet, disconnectWallet, connectWallet }) => {
+const Header = ({ wallet, disconnectWallet, connectWallet, balance }) => {
   return (
     <header>
       <div className="wavy">
@@ -32,6 +31,7 @@ const Header = ({ wallet, disconnectWallet, connectWallet }) => {
       <p className="sub-header">
         👾Your account's address:<br></br>
       </p>
+
       {wallet ? (
         <>
           <div className="wallet">
@@ -49,6 +49,9 @@ const Header = ({ wallet, disconnectWallet, connectWallet }) => {
           </button>
         </div>
       )}
+      <p className="sub-header">💰Your account's ballance:</p>
+      <p className="sub-header">{balance} ETH</p>
+
       <p className="sub-header">Start the game by using the arrow keys!</p>
     </header>
   );

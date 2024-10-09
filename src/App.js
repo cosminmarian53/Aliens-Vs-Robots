@@ -48,35 +48,53 @@ const App = () => {
     };
   }, []);
   const [wallet, setWallet] = useState("");
-
-  const connectWallet = async () => {
+  const [web3, setWeb3] = useState(null);
+  const [accounts, setAccounts] = useState([]);
+  const [selectedAccount, setSelectedAccount] = useState("");
+  const [balance, setBalance] = useState(0);
+  useEffect(() => {
+    // ensure that there is an injected Ethereum provider
     if (window.ethereum) {
-      const web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
+      setWeb3(new Web3(window.ethereum));
+    }
+  }, []);
+
+  async function connectWallet() {
+    if (window.ethereum) {
+      setWeb3(new Web3(window.ethereum));
+      await window.ethereum.request({ method: "eth_requestAccounts" });
       const accounts = await web3.eth.getAccounts();
-      setWallet(accounts[0]);
+      setAccounts(accounts);
+      const walletAddress = accounts[0]; // Default to the first account
+      setWallet(walletAddress);
+      setSelectedAccount(walletAddress);
+      const balanceWei = await web3.eth.getBalance(walletAddress);
+      const balanceEth = web3.utils.fromWei(balanceWei, "ether");
+      setBalance(balanceEth);
+      console.log(`Wallet: ${walletAddress}`);
+      console.log(`Balance: ${balanceEth} ETH`);
 
       // Listen for account changes
       window.ethereum.on("accountsChanged", (accounts) => {
-        setWallet(accounts[0]);
+        setAccounts(accounts);
+        setWallet(accounts[0]); // Default to the first account
+        setSelectedAccount(accounts[0]);
       });
-    } else if (window.web3) {
-      const web3 = new Web3(window.web3.currentProvider);
-      const accounts = await web3.eth.getAccounts();
-      setWallet(accounts[0]);
     } else {
       console.log(
         "Non-Ethereum browser detected. You should consider trying MetaMask!"
       );
     }
-  };
+  }
 
   const disconnectWallet = () => {
     setWallet("");
+    setSelectedAccount("");
     if (window.ethereum && window.ethereum.removeListener) {
-      window.ethereum.removeListener("accountsChanged", setWallet);
+      window.ethereum.removeListener("accountsChanged", setAccounts);
     }
   };
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
@@ -100,6 +118,7 @@ const App = () => {
             wallet={wallet}
             connectWallet={connectWallet}
             disconnectWallet={disconnectWallet}
+            balance={balance}
           />{" "}
           <StarterScreen
             hasEntered={hasEntered}
@@ -120,6 +139,7 @@ const App = () => {
               wallet={wallet}
               connectWallet={connectWallet}
               disconnectWallet={disconnectWallet}
+              balance={balance}
             />
           )}
           {playerHealth > 0 ? (
