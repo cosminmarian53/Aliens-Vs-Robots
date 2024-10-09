@@ -47,7 +47,36 @@ const App = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  const [wallet, setWallet] = useState("");
 
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+      const accounts = await web3.eth.getAccounts();
+      setWallet(accounts[0]);
+
+      // Listen for account changes
+      window.ethereum.on("accountsChanged", (accounts) => {
+        setWallet(accounts[0]);
+      });
+    } else if (window.web3) {
+      const web3 = new Web3(window.web3.currentProvider);
+      const accounts = await web3.eth.getAccounts();
+      setWallet(accounts[0]);
+    } else {
+      console.log(
+        "Non-Ethereum browser detected. You should consider trying MetaMask!"
+      );
+    }
+  };
+
+  const disconnectWallet = () => {
+    setWallet("");
+    if (window.ethereum && window.ethereum.removeListener) {
+      window.ethereum.removeListener("accountsChanged", setWallet);
+    }
+  };
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === "Enter") {
@@ -63,46 +92,15 @@ const App = () => {
     };
   }, []);
 
-  const [account, setAccount] = useState("");
-
-  useEffect(() => {
-    // Connect to the blockchain
-    const loadWeb3 = async () => {
-      if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum);
-        await window.ethereum.enable();
-        const web3 = window.web3;
-        const accounts = await web3.eth.getAccounts();
-        setAccount(accounts[0]);
-
-        // Listen for account changes
-        window.ethereum.on("accountsChanged", (accounts) => {
-          setAccount(accounts[0]);
-        });
-      } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider);
-      } else {
-        console.log(
-          "Non-Ethereum browser detected. You should consider trying MetaMask!"
-        );
-      }
-    };
-
-    loadWeb3();
-
-    // Cleanup function to remove the event listener
-    return () => {
-      if (window.ethereum && window.ethereum.removeListener) {
-        window.ethereum.removeListener("accountsChanged", setAccount);
-      }
-    };
-  }, []);
-
   if (!hasEntered) {
     return (
       <>
         <div className="player-starter-page">
-          <Header account={account} />{" "}
+          <Header
+            wallet={wallet}
+            connectWallet={connectWallet}
+            disconnectWallet={disconnectWallet}
+          />{" "}
           <StarterScreen
             hasEntered={hasEntered}
             setHasEntered={setHasEntered}
@@ -117,7 +115,13 @@ const App = () => {
     <Provider store={store}>
       <>
         <div className="App">
-          {playerHealth > 0 && <Header account={account} />}
+          {playerHealth > 0 && (
+            <Header
+              wallet={wallet}
+              connectWallet={connectWallet}
+              disconnectWallet={disconnectWallet}
+            />
+          )}
           {playerHealth > 0 ? (
             <main>
               <div className="game-container">

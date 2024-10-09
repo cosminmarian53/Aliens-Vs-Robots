@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Web3 from "web3";
 
-const Header = ({ account }) => {
+const Header = ({ wallet, disconnectWallet, connectWallet }) => {
   return (
     <header>
       <div className="wavy">
@@ -30,8 +31,24 @@ const Header = ({ account }) => {
       </div>
       <p className="sub-header">
         👾Your account's address:<br></br>
-        {account}
       </p>
+      {wallet ? (
+        <>
+          <div className="wallet">
+            <p className="sub-header">{wallet}</p>
+            <button className="btn" onClick={disconnectWallet}>
+              Disconnect
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="wallet">
+          <p className="sub-header">You are not connected with your wallet!</p>
+          <button className="btn" onClick={connectWallet}>
+            Connect
+          </button>
+        </div>
+      )}
       <p className="sub-header">Start the game by using the arrow keys!</p>
     </header>
   );

@@ -25,6 +25,12 @@ body {
   text-shadow: 9px 8px 0 #000, -6px 6px 0 #000, -6px -6px 0 #000,
     6px -6px 0 #000, 0px 0px 9px #000;
 }
+.wallet{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .main-header.blink {
   animation: blink 0.3s infinite;
 }
@@ -227,6 +233,7 @@ footer {
 }
 .btn {
   font-family: "ArcadeClassic", sans-serif;
+
   font-size: 1.3rem;
   padding: 10px 25px;
   text-align: center;
@@ -236,6 +243,7 @@ footer {
   border-radius: 5px;
   cursor: pointer;
 }
+
 .btn:active {
   transform: translateY(3px);
 }
