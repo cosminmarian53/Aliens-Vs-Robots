@@ -112,7 +112,7 @@ For any inquiries or support, please contact [cosminmarian53](https://github.com
 
 ---
 
-**Note**: The game is almost finished. Later, I will implement an NFT system, in which the player, after finishing the game, will receive a few NFTs based on their quest progress.
-**Second Note**: This game has been branched out. One version for Web2.0 and another for Web3. The main branch contains the Web2.0 version and the web3-ethereum contains the Web3 version.
-**Third Note**: The game is complete!! The main branch is completely viable, and fully functional, and depends whether you want to use the Web2 version or the Web3 version.
+### **Note**: The game is almost finished. Later, I will implement an NFT system, in which the player, after finishing the game, will receive a few NFTs based on their quest progress.
+###  **Second Note**: This game has been branched out. One version for Web2.0 and another for Web3. The main branch contains the Web2.0 version and the web3-ethereum contains the Web3 version.
+### **Third Note**: The game is complete!! The main branch is completely viable, and fully functional, and depends whether you want to use the Web2 version or the Web3 version.
 ```
