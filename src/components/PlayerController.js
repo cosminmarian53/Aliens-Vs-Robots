@@ -9,6 +9,10 @@ import {
 import "./PlayerController.css";
 import move from "../sounds/move.mp3";
 import click from "../sounds/click-sound.mp3";
+import leftArrow from "../assets/left arrow.png";
+import rightArrow from "../assets/right arrow.png";
+import upArrow from "../assets/up arrow.png";
+import downArrow from "../assets/down arrow.png";
 const PlayerController = ({
   incrementX,
   decrementX,
@@ -97,11 +101,7 @@ const PlayerController = ({
               clickSound.play();
             }}
           >
-            <img
-              src="up arrow.png"
-              alt="Arrow Up"
-              className="arrow-icon small"
-            />
+            <img src={upArrow} alt="Arrow Up" className="arrow-icon small" />
           </button>
         </div>
         <div className="horizontal-buttons">
@@ -117,7 +117,7 @@ const PlayerController = ({
             }}
           >
             <img
-              src="down arrow.png"
+              src={downArrow}
               alt="Arrow Down"
               className="arrow-icon small"
             />
@@ -134,7 +134,7 @@ const PlayerController = ({
             }}
           >
             <img
-              src="right arrow.png"
+              src={rightArrow}
               alt="Arrow Right"
               className="arrow-icon small"
             />
@@ -151,7 +151,7 @@ const PlayerController = ({
             }}
           >
             <img
-              src="left arrow.png"
+              src={leftArrow}
               alt="Arrow Left"
               className="arrow-icon small"
             />
