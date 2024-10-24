@@ -35,6 +35,7 @@ const App = () => {
   const isBoss = currentEnemy === 1 ? false : true;
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
+  // Screen resizer for mobile
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 600);
@@ -60,30 +61,37 @@ const App = () => {
   }, []);
 
   async function connectWallet() {
-    if (window.ethereum) {
-      setWeb3(new Web3(window.ethereum));
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-      const accounts = await web3.eth.getAccounts();
-      setAccounts(accounts);
-      const walletAddress = accounts[0]; // Default to the first account
-      setWallet(walletAddress);
-      setSelectedAccount(walletAddress);
-      const balanceWei = await web3.eth.getBalance(walletAddress);
-      const balanceEth = web3.utils.fromWei(balanceWei, "ether");
-      setBalance(balanceEth);
-      console.log(`Wallet: ${walletAddress}`);
-      console.log(`Balance: ${balanceEth} ETH`);
-
-      // Listen for account changes
-      window.ethereum.on("accountsChanged", (accounts) => {
+    if (typeof window.ethereum !== "undefined") {
+      try {
+        await window.ethereum.request({ method: "eth_requestAccounts" });
+        setWeb3(new Web3(window.ethereum));
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
         setAccounts(accounts);
-        setWallet(accounts[0]); // Default to the first account
-        setSelectedAccount(accounts[0]);
-      });
+        const walletAddress = accounts[0]; // Default to the first account
+        setWallet(walletAddress);
+        setSelectedAccount(walletAddress);
+
+        // Get the balance in Wei and convert it to Ether
+        const balanceWei = await web3.eth.getBalance(walletAddress);
+        const balanceEth = web3.utils.fromWei(balanceWei, "ether");
+        setBalance(balanceEth);
+
+        console.log(`Wallet: ${walletAddress}`);
+        console.log(`Balance: ${balanceEth} ETH`);
+
+        // Listen for account changes
+        window.ethereum.on("accountsChanged", (accounts) => {
+          setAccounts(accounts);
+          setWallet(accounts[0]); // Default to the first account
+          setSelectedAccount(accounts[0]);
+        });
+      } catch (error) {
+        console.log(error);
+      }
     } else {
-      console.log(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
-      );
+      console.log("Please install MetaMask");
     }
   }
 
