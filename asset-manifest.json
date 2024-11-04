@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Aliens-Vs-Robots/static/css/main.1a861b73.css",
-    "main.js": "/Aliens-Vs-Robots/static/js/main.232b47bd.js",
+    "main.css": "/Aliens-Vs-Robots/static/css/main.435c81a1.css",
+    "main.js": "/Aliens-Vs-Robots/static/js/main.de80c0fd.js",
     "static/media/battle_theme.mp3": "/Aliens-Vs-Robots/static/media/battle_theme.42a72ca3774ef925c3e7.mp3",
     "static/media/main-theme.mp3": "/Aliens-Vs-Robots/static/media/main-theme.b3db9877855eff33bf76.mp3",
     "static/media/boss.gif": "/Aliens-Vs-Robots/static/media/boss.3351c3aaf2213bd6831a.gif",
@@ -36,11 +36,11 @@
     "static/media/click-sound.mp3": "/Aliens-Vs-Robots/static/media/click-sound.e706eb2829faeb7a3ff3.mp3",
     "static/media/move.mp3": "/Aliens-Vs-Robots/static/media/move.61b046ede0d002a57052.mp3",
     "index.html": "/Aliens-Vs-Robots/index.html",
-    "main.1a861b73.css.map": "/Aliens-Vs-Robots/static/css/main.1a861b73.css.map",
-    "main.232b47bd.js.map": "/Aliens-Vs-Robots/static/js/main.232b47bd.js.map"
+    "main.435c81a1.css.map": "/Aliens-Vs-Robots/static/css/main.435c81a1.css.map",
+    "main.de80c0fd.js.map": "/Aliens-Vs-Robots/static/js/main.de80c0fd.js.map"
   },
   "entrypoints": [
-    "static/css/main.1a861b73.css",
-    "static/js/main.232b47bd.js"
+    "static/css/main.435c81a1.css",
+    "static/js/main.de80c0fd.js"
   ]
 }
