@@ -260,7 +260,6 @@ const SafeArea = ({
       setMintedNftLink(etherscanLink);
       setMintedState(true);
       setMinted(true);
-      alert("NFT minted successfully!");
     } catch (error) {
       console.error("Error minting NFT:", error);
     } finally {
@@ -314,17 +313,20 @@ const SafeArea = ({
                   />
                 </div>
                 {mintedNftLink && (
-                  <p>
-                    Minted NFT:{" "}
-                    <a
-                      href={mintedNftLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={handleEtherscanClick}
-                    >
-                      View on Etherscan
-                    </a>
-                  </p>
+                  <>
+                    <p>
+                      Minted NFT:{" "}
+                      <a
+                        href={mintedNftLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={handleEtherscanClick}
+                      >
+                        View on Etherscan
+                      </a>
+                    </p>
+                    <p>Refresh the page, and try again to get more rewards!</p>
+                  </>
                 )}
               </div>
               <button
