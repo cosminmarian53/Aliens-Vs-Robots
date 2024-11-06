@@ -3,6 +3,12 @@ import { connect } from "react-redux";
 import Web3 from "web3";
 import "./MapBase.css";
 import Typewriter from "./Typewritter";
+import {
+  bitBlopContract,
+  bloodforgeBotContract,
+  cyberAlienContract,
+  generalXenoContract,
+} from "../constants";
 
 const SafeArea = ({
   player,
@@ -17,13 +23,23 @@ const SafeArea = ({
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [account, setAccount] = useState("");
-  const [hasMinted, setHasMinted] = useState(false);
+  const [hasMintedBitBlop, setHasMintedBitBlop] = useState(false);
+  const [hasMintedBloodforgeBot, setHasMintedBloodforgeBot] = useState(false);
+  const [hasMintedGeneralXeno, setHasMintedGeneralXeno] = useState(false);
+  const [hasMintedCyberAlien, setHasMintedCyberAlien] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [mintedNftLink, setMintedNftLink] = useState("");
 
   const dialogues = [
-    "Welcome to the safe area, soldier!Thank you for saving me! I was able to run and hide from the robot invaders. This is my sanctuary, you can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
+    "Welcome to the safe area, soldier! Thank you for saving me! I was able to run and hide from the robot invaders. This is my sanctuary, you can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
     "You can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
     "Also, don't forget to finish your quests in order to get rewards!",
     "You have completed all the quests! You are now ready to mint your NFT!",
+    "Minting your NFT, please wait...",
+    "Congratulations on minting BitBlop!",
+    "Congratulations on minting BloodforgeBot!",
+    "Congratulations on minting General XENO!",
+    "Congratulations on minting CyberAlien! The darkness is now upon us...",
   ];
 
   const size = 10;
@@ -163,7 +179,7 @@ const SafeArea = ({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [player]);
-  // TESTING PURPOSES
+
   useEffect(() => {
     const loadWeb3 = async () => {
       if (window.ethereum) {
@@ -171,11 +187,52 @@ const SafeArea = ({
         await window.ethereum.enable();
         const web3 = window.web3;
         const accounts = await web3.eth.getAccounts();
-        setAccount(accounts[0]);
+        const currentAccount = accounts[0];
+
+        setAccount(currentAccount);
+
+        // Check if the account has already minted the NFTs
+        const hasMintedBitBlop = await bitBlopContract.methods
+          .hasMinted(currentAccount)
+          .call();
+        const hasMintedBloodforgeBot = await bloodforgeBotContract.methods
+          .hasMinted(currentAccount)
+          .call();
+        const hasMintedGeneralXeno = await generalXenoContract.methods
+          .hasMinted(currentAccount)
+          .call();
+        const hasMintedCyberAlien = await cyberAlienContract.methods
+          .hasMinted(currentAccount)
+          .call();
+
+        setHasMintedBitBlop(hasMintedBitBlop);
+        setHasMintedBloodforgeBot(hasMintedBloodforgeBot);
+        setHasMintedGeneralXeno(hasMintedGeneralXeno);
+        setHasMintedCyberAlien(hasMintedCyberAlien);
 
         // Listen for account changes
-        window.ethereum.on("accountsChanged", (accounts) => {
-          setAccount(accounts[0]);
+        window.ethereum.on("accountsChanged", async (accounts) => {
+          const newAccount = accounts[0];
+          setAccount(newAccount);
+
+          // Check if the new account has already minted the NFTs
+          const hasMintedBitBlop = await bitBlopContract.methods
+            .hasMinted(newAccount)
+            .call();
+          const hasMintedBloodforgeBot = await bloodforgeBotContract.methods
+            .hasMinted(newAccount)
+            .call();
+          const hasMintedGeneralXeno = await generalXenoContract.methods
+            .hasMinted(newAccount)
+            .call();
+          const hasMintedCyberAlien = await cyberAlienContract.methods
+            .hasMinted(newAccount)
+            .call();
+
+          setHasMintedBitBlop(hasMintedBitBlop);
+          setHasMintedBloodforgeBot(hasMintedBloodforgeBot);
+          setHasMintedGeneralXeno(hasMintedGeneralXeno);
+          setHasMintedCyberAlien(hasMintedCyberAlien);
         });
       } else if (window.web3) {
         window.web3 = new Web3(window.web3.currentProvider);
@@ -195,18 +252,35 @@ const SafeArea = ({
       }
     };
   }, []);
-  // END TESTING PURPOSES
-  // MINITING NFT TEST FUNCTION
-  const mintNFT = async () => {
-    if (!hasMinted) {
-      // Add your minting logic here
-      console.log("Minting NFT for account:", account);
-      setHasMinted(true);
-    } else {
-      console.log("NFT already minted for this account.");
+
+  const mintNft = async (contract, setMintedState) => {
+    setLoading(true);
+    try {
+      const receipt = await contract.methods.mintNft().send({ from: account });
+      const tokenId = receipt.events.Transfer.returnValues.tokenId;
+      const etherscanLink = `https://etherscan.io/token/${contract.options.address}?a=${tokenId}`;
+      setMintedNftLink(etherscanLink);
+      setMintedState(true);
+      alert("NFT minted successfully!");
+    } catch (error) {
+      console.error("Error minting NFT:", error);
+    } finally {
+      setLoading(false);
     }
   };
-  // END MINITING NFT TEST FUNCTION
+
+  const handleMint = () => {
+    if (!hasMintedBitBlop) {
+      mintNft(bitBlopContract, setHasMintedBitBlop);
+    } else if (!hasMintedBloodforgeBot) {
+      mintNft(bloodforgeBotContract, setHasMintedBloodforgeBot);
+    } else if (!hasMintedGeneralXeno) {
+      mintNft(generalXenoContract, setHasMintedGeneralXeno);
+    } else if (!hasMintedCyberAlien) {
+      mintNft(cyberAlienContract, setHasMintedCyberAlien);
+    }
+  };
+
   return (
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>
@@ -220,7 +294,17 @@ const SafeArea = ({
                 <div className="alien-npc-dialogue">
                   <Typewriter
                     text={
-                      talkCounter > 3
+                      loading
+                        ? dialogues[4]
+                        : hasMintedCyberAlien
+                        ? dialogues[8]
+                        : hasMintedGeneralXeno
+                        ? dialogues[7]
+                        : hasMintedBloodforgeBot
+                        ? dialogues[6]
+                        : hasMintedBitBlop
+                        ? dialogues[5]
+                        : talkCounter > 3
                         ? dialogues[3]
                         : talkCounter === 3
                         ? dialogues[2]
@@ -232,6 +316,18 @@ const SafeArea = ({
                     wordsPerLine={20}
                   />
                 </div>
+                {mintedNftLink && (
+                  <p>
+                    Minted NFT:{" "}
+                    <a
+                      href={mintedNftLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View on Etherscan
+                    </a>
+                  </p>
+                )}
               </div>
               <button
                 className="close-modal-btn"
@@ -242,8 +338,12 @@ const SafeArea = ({
                 Close
               </button>
               {talkCounter > 3 && (
-                <button className="mint-nft-btn" onClick={mintNFT}>
-                  Mint NFT
+                <button
+                  className="mint-nft-btn"
+                  onClick={handleMint}
+                  disabled={loading}
+                >
+                  {loading ? "Minting..." : "Mint NFT"}
                 </button>
               )}
             </div>
