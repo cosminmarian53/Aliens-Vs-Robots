@@ -29,6 +29,7 @@ const SafeArea = ({
   const [hasMintedCyberAlien, setHasMintedCyberAlien] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mintedNftLink, setMintedNftLink] = useState("");
+  const [minted, setMinted] = useState(false);
 
   const dialogues = [
     "Welcome to the safe area, soldier! Thank you for saving me! I was able to run and hide from the robot invaders. This is my sanctuary, you can rest here and prepare for your next mission. Remember, the fate of the galaxy is in your hands!",
@@ -36,10 +37,7 @@ const SafeArea = ({
     "Also, don't forget to finish your quests in order to get rewards!",
     "You have completed all the quests! You are now ready to mint your NFT!",
     "Minting your NFT, please wait...",
-    "Congratulations on minting BitBlop!",
-    "Congratulations on minting BloodforgeBot!",
-    "Congratulations on minting General XENO!",
-    "Congratulations on minting CyberAlien! The darkness is now upon us...",
+    "You have minted all NFTs! The galaxy is safe, but a new threat looms on the horizon...",
   ];
 
   const size = 10;
@@ -261,6 +259,7 @@ const SafeArea = ({
       const etherscanLink = `https://etherscan.io/token/${contract.options.address}?a=${tokenId}`;
       setMintedNftLink(etherscanLink);
       setMintedState(true);
+      setMinted(true);
       alert("NFT minted successfully!");
     } catch (error) {
       console.error("Error minting NFT:", error);
@@ -281,6 +280,10 @@ const SafeArea = ({
     }
   };
 
+  const handleEtherscanClick = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="map-base-container">
       <div className="map-base-table">{renderTable(matrix)}</div>
@@ -297,12 +300,6 @@ const SafeArea = ({
                       loading
                         ? dialogues[4]
                         : hasMintedCyberAlien
-                        ? dialogues[8]
-                        : hasMintedGeneralXeno
-                        ? dialogues[7]
-                        : hasMintedBloodforgeBot
-                        ? dialogues[6]
-                        : hasMintedBitBlop
                         ? dialogues[5]
                         : talkCounter > 3
                         ? dialogues[3]
@@ -323,6 +320,7 @@ const SafeArea = ({
                       href={mintedNftLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleEtherscanClick}
                     >
                       View on Etherscan
                     </a>
@@ -337,7 +335,7 @@ const SafeArea = ({
               >
                 Close
               </button>
-              {talkCounter > 3 && (
+              {talkCounter > 3 && !minted && (
                 <button
                   className="mint-nft-btn"
                   onClick={handleMint}
