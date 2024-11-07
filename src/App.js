@@ -13,6 +13,8 @@ import GameOver from "./components/GameOver";
 import Quests from "./components/Quests";
 import StarterScreen from "./components/StarterScreen";
 import Web3 from "web3";
+import theme from "./sounds/main-theme.mp3";
+import battle from "./sounds/battle_theme.mp3";
 
 const App = () => {
   // Define all states
@@ -35,6 +37,61 @@ const App = () => {
   const isBoss = currentEnemy === 1 ? false : true;
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
+  // Audio player state
+  const [audio, setAudio] = useState(new Audio(theme));
+  const [playing, setPlaying] = useState(() => {
+    const saved = localStorage.getItem("playing");
+    return saved !== null ? JSON.parse(saved) : false;
+  });
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    const saved = localStorage.getItem("currentTheme");
+    return saved !== null ? saved : "Main Theme";
+  });
+
+  const toggleAudio = () => setPlaying(!playing);
+
+  useEffect(() => {
+    localStorage.setItem("playing", JSON.stringify(playing));
+    if (playing) {
+      try {
+        audio.play().catch((error) => {
+          console.error("Error playing audio:", error);
+          setPlaying(false);
+        });
+        audio.volume = 0.3;
+      } catch (error) {
+        console.error("Error playing audio:", error);
+        setPlaying(false);
+      }
+    } else {
+      audio.pause();
+    }
+  }, [playing, audio]);
+
+  useEffect(() => {
+    audio.pause();
+    const newAudio = new Audio(isModalOpen ? battle : theme);
+    newAudio.volume = 0.3;
+    newAudio.loop = true;
+    setAudio(newAudio);
+    setCurrentTheme(isModalOpen ? "Battle Theme" : "Main Theme");
+    localStorage.setItem(
+      "currentTheme",
+      isModalOpen ? "Battle Theme" : "Main Theme"
+    );
+    if (playing) {
+      try {
+        newAudio.play().catch((error) => {
+          console.error("Error playing audio:", error);
+          setPlaying(false);
+        });
+      } catch (error) {
+        console.error("Error playing audio:", error);
+        setPlaying(false);
+      }
+    }
+  }, [isModalOpen]);
+
   // Screen resizer for mobile
   useEffect(() => {
     const handleResize = () => {
@@ -48,11 +105,21 @@ const App = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const [wallet, setWallet] = useState("");
+  const [wallet, setWallet] = useState(() => {
+    const saved = localStorage.getItem("wallet");
+    return saved !== null ? saved : "";
+  });
   const [web3, setWeb3] = useState(null);
   const [accounts, setAccounts] = useState([]);
-  const [selectedAccount, setSelectedAccount] = useState("");
-  const [balance, setBalance] = useState(0);
+  const [selectedAccount, setSelectedAccount] = useState(() => {
+    const saved = localStorage.getItem("selectedAccount");
+    return saved !== null ? saved : "";
+  });
+  const [balance, setBalance] = useState(() => {
+    const saved = localStorage.getItem("balance");
+    return saved !== null ? parseFloat(saved) : 0;
+  });
+
   useEffect(() => {
     // ensure that there is an injected Ethereum provider
     if (window.ethereum) {
@@ -76,10 +143,15 @@ const App = () => {
         // Get the balance in Wei and convert it to Ether
         const balanceWei = await web3.eth.getBalance(walletAddress);
         const balanceEth = web3.utils.fromWei(balanceWei, "ether");
-        setBalance(balanceEth);
+        setBalance(parseFloat(balanceEth).toFixed(4)); // Format balance to 4 decimal places
 
         console.log(`Wallet: ${walletAddress}`);
         console.log(`Balance: ${balanceEth} ETH`);
+
+        // Save to localStorage
+        localStorage.setItem("wallet", walletAddress);
+        localStorage.setItem("selectedAccount", walletAddress);
+        localStorage.setItem("balance", parseFloat(balanceEth).toFixed(4));
 
         // Listen for account changes
         window.ethereum.on("accountsChanged", (accounts) => {
@@ -98,6 +170,9 @@ const App = () => {
   const disconnectWallet = () => {
     setWallet("");
     setSelectedAccount("");
+    localStorage.removeItem("wallet");
+    localStorage.removeItem("selectedAccount");
+    localStorage.removeItem("balance");
     if (window.ethereum && window.ethereum.removeListener) {
       window.ethereum.removeListener("accountsChanged", setAccounts);
     }
@@ -132,7 +207,12 @@ const App = () => {
             hasEntered={hasEntered}
             setHasEntered={setHasEntered}
           />
-          <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
+          <Footer
+            isModalOpen={isModalOpen}
+            playing={playing}
+            toggleAudio={toggleAudio}
+            currentTheme={currentTheme}
+          />
         </div>
       </>
     );
@@ -268,7 +348,12 @@ const App = () => {
           ) : (
             <GameOver />
           )}
-          <Footer isModalOpen={isModalOpen} playerHealth={playerHealth} />
+          <Footer
+            isModalOpen={isModalOpen}
+            playing={playing}
+            toggleAudio={toggleAudio}
+            currentTheme={currentTheme}
+          />
         </div>
       </>
     </Provider>
